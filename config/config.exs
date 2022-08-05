@@ -10,7 +10,9 @@ import Config
 config :narwin_chat,
   ecto_repos: [NarwinChat.Repo]
 
-config :narwin_chat, NarwinChat.Repo, database: "priv/database.#{Mix.env()}.db"
+config :narwin_chat, NarwinChat.Repo,
+  database: "priv/db/database.#{Mix.env()}.db",
+  key: System.get_env("NARWIN_CHAT_DB_KEY", "narwinchatsecret")
 
 # Configures the endpoint
 config :narwin_chat, NarwinChatWeb.Endpoint,

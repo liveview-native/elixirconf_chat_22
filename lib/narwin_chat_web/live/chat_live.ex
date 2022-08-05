@@ -18,6 +18,7 @@ defmodule NarwinChatWeb.ChatLive do
     engine: Phoenix.LiveView.HTMLEngine
   )
 
+  @impl true
   def render(assigns) do
     # if Map.get(assigns, :_native, false) do
     render_native(assigns)
@@ -26,6 +27,7 @@ defmodule NarwinChatWeb.ChatLive do
     # end
   end
 
+  @impl true
   def mount(_params, _session, socket) do
     with true <- connected?(socket),
          name <- generate_name(),
