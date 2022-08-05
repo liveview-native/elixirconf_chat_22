@@ -4,7 +4,7 @@ defmodule NarwinChatWeb.ChatLive do
 
   EEx.function_from_file(
     :defp,
-    :render_native,
+    :render_ios,
     "lib/narwin_chat_web/live/chat_live.ios.heex",
     [:assigns],
     engine: Phoenix.LiveView.HTMLEngine
@@ -20,11 +20,13 @@ defmodule NarwinChatWeb.ChatLive do
 
   @impl true
   def render(assigns) do
-    # if Map.get(assigns, :_native, false) do
-    render_native(assigns)
-    # else
-    #   render_web(assigns)
-    # end
+    case Map.get(assigns, :platform) do
+      :ios ->
+        render_ios(assigns)
+
+      :web ->
+        render_web(assigns)
+    end
   end
 
   @impl true

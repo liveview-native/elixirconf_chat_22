@@ -14,10 +14,12 @@ defmodule NarwinChatWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", NarwinChatWeb do
-    pipe_through :browser
+  live_session :default, on_mount: NarwinChatWeb.InitAssigns do
+    scope "/", NarwinChatWeb do
+      pipe_through :browser
 
-    live "/", ChatLive
+      live "/", ChatLive
+    end
   end
 
   # Other scopes may use custom stacks.
