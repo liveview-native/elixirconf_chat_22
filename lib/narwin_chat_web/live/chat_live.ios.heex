@@ -14,7 +14,7 @@
           <text background="#ff0000" alignment="leading" font="title3">
             <%= user_name %>
           </text>
-          <%= for {%{id: id, text: text}, idx} <- Enum.with_index(user_messages) do %>
+          <%= for {%{id: _id, text: text}, idx} <- Enum.with_index(user_messages) do %>
             <%# todo: form helpers for native? %>
             <vstack id={"message-#{idx}"} list-row-separator="hidden">
               <text alignment="leading" font="subheadline"><%= text %></text>
