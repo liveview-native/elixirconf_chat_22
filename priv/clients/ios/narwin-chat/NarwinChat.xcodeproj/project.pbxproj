@@ -1,0 +1,623 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FBF346E288B086200683416 /* NarwinChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF346D288B086200683416 /* NarwinChatApp.swift */; };
+		2FBF3470288B086200683416 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF346F288B086200683416 /* ContentView.swift */; };
+		2FBF3472288B086300683416 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FBF3471288B086300683416 /* Assets.xcassets */; };
+		2FBF3475288B086300683416 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FBF3474288B086300683416 /* Preview Assets.xcassets */; };
+		2FBF347F288B086300683416 /* NarwinChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF347E288B086300683416 /* NarwinChatTests.swift */; };
+		2FBF3489288B086300683416 /* NarwinChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF3488288B086300683416 /* NarwinChatUITests.swift */; };
+		2FBF348B288B086300683416 /* NarwinChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF348A288B086300683416 /* NarwinChatUITestsLaunchTests.swift */; };
+		2FBF34A1288B0C0F00683416 /* PhoenixLiveViewNative in Frameworks */ = {isa = PBXBuildFile; productRef = 2FBF34A0288B0C0F00683416 /* PhoenixLiveViewNative */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2FBF347B288B086300683416 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FBF3462288B086200683416 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FBF3469288B086200683416;
+			remoteInfo = NarwinChat;
+		};
+		2FBF3485288B086300683416 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2FBF3462288B086200683416 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2FBF3469288B086200683416;
+			remoteInfo = NarwinChat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2F2CB475289D9E6500E0F92F /* liveview-client-swiftui */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "liveview-client-swiftui"; path = "../../../../../liveview-client-swiftui"; sourceTree = "<group>"; };
+		2FBF346A288B086200683416 /* NarwinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarwinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FBF346D288B086200683416 /* NarwinChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarwinChatApp.swift; sourceTree = "<group>"; };
+		2FBF346F288B086200683416 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2FBF3471288B086300683416 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FBF3474288B086300683416 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2FBF347A288B086300683416 /* NarwinChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NarwinChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FBF347E288B086300683416 /* NarwinChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarwinChatTests.swift; sourceTree = "<group>"; };
+		2FBF3484288B086300683416 /* NarwinChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NarwinChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FBF3488288B086300683416 /* NarwinChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarwinChatUITests.swift; sourceTree = "<group>"; };
+		2FBF348A288B086300683416 /* NarwinChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarwinChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FBF3467288B086200683416 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FBF34A1288B0C0F00683416 /* PhoenixLiveViewNative in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FBF3477288B086300683416 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FBF3481288B086300683416 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2FBF3461288B086200683416 = {
+			isa = PBXGroup;
+			children = (
+				2FBF3498288B09A000683416 /* Packages */,
+				2FBF346C288B086200683416 /* NarwinChat */,
+				2FBF347D288B086300683416 /* NarwinChatTests */,
+				2FBF3487288B086300683416 /* NarwinChatUITests */,
+				2FBF346B288B086200683416 /* Products */,
+				2FBF349F288B0C0F00683416 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2FBF346B288B086200683416 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FBF346A288B086200683416 /* NarwinChat.app */,
+				2FBF347A288B086300683416 /* NarwinChatTests.xctest */,
+				2FBF3484288B086300683416 /* NarwinChatUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2FBF346C288B086200683416 /* NarwinChat */ = {
+			isa = PBXGroup;
+			children = (
+				2FBF346D288B086200683416 /* NarwinChatApp.swift */,
+				2FBF346F288B086200683416 /* ContentView.swift */,
+				2FBF3471288B086300683416 /* Assets.xcassets */,
+				2FBF3473288B086300683416 /* Preview Content */,
+			);
+			path = NarwinChat;
+			sourceTree = "<group>";
+		};
+		2FBF3473288B086300683416 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2FBF3474288B086300683416 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2FBF347D288B086300683416 /* NarwinChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				2FBF347E288B086300683416 /* NarwinChatTests.swift */,
+			);
+			path = NarwinChatTests;
+			sourceTree = "<group>";
+		};
+		2FBF3487288B086300683416 /* NarwinChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2FBF3488288B086300683416 /* NarwinChatUITests.swift */,
+				2FBF348A288B086300683416 /* NarwinChatUITestsLaunchTests.swift */,
+			);
+			path = NarwinChatUITests;
+			sourceTree = "<group>";
+		};
+		2FBF3498288B09A000683416 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				2F2CB475289D9E6500E0F92F /* liveview-client-swiftui */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		2FBF349F288B0C0F00683416 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2FBF3469288B086200683416 /* NarwinChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FBF348E288B086300683416 /* Build configuration list for PBXNativeTarget "NarwinChat" */;
+			buildPhases = (
+				2FBF3466288B086200683416 /* Sources */,
+				2FBF3467288B086200683416 /* Frameworks */,
+				2FBF3468288B086200683416 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2FBF349B288B09FD00683416 /* PBXTargetDependency */,
+			);
+			name = NarwinChat;
+			packageProductDependencies = (
+				2FBF34A0288B0C0F00683416 /* PhoenixLiveViewNative */,
+			);
+			productName = NarwinChat;
+			productReference = 2FBF346A288B086200683416 /* NarwinChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2FBF3479288B086300683416 /* NarwinChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FBF3491288B086300683416 /* Build configuration list for PBXNativeTarget "NarwinChatTests" */;
+			buildPhases = (
+				2FBF3476288B086300683416 /* Sources */,
+				2FBF3477288B086300683416 /* Frameworks */,
+				2FBF3478288B086300683416 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2FBF347C288B086300683416 /* PBXTargetDependency */,
+			);
+			name = NarwinChatTests;
+			productName = NarwinChatTests;
+			productReference = 2FBF347A288B086300683416 /* NarwinChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2FBF3483288B086300683416 /* NarwinChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FBF3494288B086300683416 /* Build configuration list for PBXNativeTarget "NarwinChatUITests" */;
+			buildPhases = (
+				2FBF3480288B086300683416 /* Sources */,
+				2FBF3481288B086300683416 /* Frameworks */,
+				2FBF3482288B086300683416 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2FBF3486288B086300683416 /* PBXTargetDependency */,
+			);
+			name = NarwinChatUITests;
+			productName = NarwinChatUITests;
+			productReference = 2FBF3484288B086300683416 /* NarwinChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2FBF3462288B086200683416 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					2FBF3469288B086200683416 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					2FBF3479288B086300683416 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 2FBF3469288B086200683416;
+					};
+					2FBF3483288B086300683416 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 2FBF3469288B086200683416;
+					};
+				};
+			};
+			buildConfigurationList = 2FBF3465288B086200683416 /* Build configuration list for PBXProject "NarwinChat" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2FBF3461288B086200683416;
+			productRefGroup = 2FBF346B288B086200683416 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FBF3469288B086200683416 /* NarwinChat */,
+				2FBF3479288B086300683416 /* NarwinChatTests */,
+				2FBF3483288B086300683416 /* NarwinChatUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2FBF3468288B086200683416 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FBF3475288B086300683416 /* Preview Assets.xcassets in Resources */,
+				2FBF3472288B086300683416 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FBF3478288B086300683416 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FBF3482288B086300683416 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2FBF3466288B086200683416 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FBF3470288B086200683416 /* ContentView.swift in Sources */,
+				2FBF346E288B086200683416 /* NarwinChatApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FBF3476288B086300683416 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FBF347F288B086300683416 /* NarwinChatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FBF3480288B086300683416 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FBF3489288B086300683416 /* NarwinChatUITests.swift in Sources */,
+				2FBF348B288B086300683416 /* NarwinChatUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2FBF347C288B086300683416 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FBF3469288B086200683416 /* NarwinChat */;
+			targetProxy = 2FBF347B288B086300683416 /* PBXContainerItemProxy */;
+		};
+		2FBF3486288B086300683416 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2FBF3469288B086200683416 /* NarwinChat */;
+			targetProxy = 2FBF3485288B086300683416 /* PBXContainerItemProxy */;
+		};
+		2FBF349B288B09FD00683416 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2FBF349A288B09FD00683416 /* PhoenixLiveViewNative */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2FBF348C288B086300683416 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2FBF348D288B086300683416 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2FBF348F288B086300683416 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NarwinChat/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DockYard.NarwinChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2FBF3490288B086300683416 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NarwinChat/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DockYard.NarwinChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2FBF3492288B086300683416 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DockYard.NarwinChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NarwinChat.app/NarwinChat";
+			};
+			name = Debug;
+		};
+		2FBF3493288B086300683416 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DockYard.NarwinChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NarwinChat.app/NarwinChat";
+			};
+			name = Release;
+		};
+		2FBF3495288B086300683416 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DockYard.NarwinChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NarwinChat;
+			};
+			name = Debug;
+		};
+		2FBF3496288B086300683416 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = DockYard.NarwinChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NarwinChat;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FBF3465288B086200683416 /* Build configuration list for PBXProject "NarwinChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FBF348C288B086300683416 /* Debug */,
+				2FBF348D288B086300683416 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FBF348E288B086300683416 /* Build configuration list for PBXNativeTarget "NarwinChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FBF348F288B086300683416 /* Debug */,
+				2FBF3490288B086300683416 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FBF3491288B086300683416 /* Build configuration list for PBXNativeTarget "NarwinChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FBF3492288B086300683416 /* Debug */,
+				2FBF3493288B086300683416 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FBF3494288B086300683416 /* Build configuration list for PBXNativeTarget "NarwinChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FBF3495288B086300683416 /* Debug */,
+				2FBF3496288B086300683416 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2FBF349A288B09FD00683416 /* PhoenixLiveViewNative */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PhoenixLiveViewNative;
+		};
+		2FBF34A0288B0C0F00683416 /* PhoenixLiveViewNative */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PhoenixLiveViewNative;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 2FBF3462288B086200683416 /* Project object */;
+}
