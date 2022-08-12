@@ -15,6 +15,14 @@ defmodule NarwinChatWeb.LiveViewNativeHelpers do
 
       EEx.function_from_file(
         :defp,
+        :render_android,
+        "lib/narwin_chat_web/live/#{unquote(template)}.android.heex",
+        [:assigns],
+        engine: Phoenix.LiveView.HTMLEngine
+      )
+
+      EEx.function_from_file(
+        :defp,
         :render_ios,
         "lib/narwin_chat_web/live/#{unquote(template)}.ios.heex",
         [:assigns],
