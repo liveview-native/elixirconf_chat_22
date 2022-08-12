@@ -8,6 +8,9 @@ defmodule NarwinChatWeb.ChatLive do
       :ios ->
         render_ios(assigns)
 
+      :android ->
+        render_android(assigns)
+
       :web ->
         render_web(assigns)
     end
