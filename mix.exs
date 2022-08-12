@@ -51,7 +51,8 @@ defmodule NarwinChat.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:ecto_sqlite3, "~> 0.7.7"},
       {:faker, "~> 0.17"},
-      {:inflex, "~> 2.0.0"}
+      {:inflex, "~> 2.0.0"},
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end
 
@@ -67,7 +68,7 @@ defmodule NarwinChat.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"]
+      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
   end
 end

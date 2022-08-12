@@ -1,22 +1,6 @@
 defmodule NarwinChatWeb.ChatLive do
   use NarwinChatWeb, :live_view
-  require EEx
-
-  EEx.function_from_file(
-    :defp,
-    :render_ios,
-    "lib/narwin_chat_web/live/chat_live.ios.heex",
-    [:assigns],
-    engine: Phoenix.LiveView.HTMLEngine
-  )
-
-  EEx.function_from_file(
-    :defp,
-    :render_web,
-    "lib/narwin_chat_web/live/chat_live.html.heex",
-    [:assigns],
-    engine: Phoenix.LiveView.HTMLEngine
-  )
+  use NarwinChatWeb.LiveViewNativeHelpers, template: "chat_live"
 
   @impl true
   def render(assigns) do

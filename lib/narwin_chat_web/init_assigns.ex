@@ -10,8 +10,8 @@ defmodule NarwinChatWeb.InitAssigns do
     "web" => :web
   }
 
-  def on_mount(:default, params, session, socket) do
-    platform_key = Map.get(params, "platform")
+  def on_mount(:default, params, _session, socket) do
+    platform_key = Map.get(params, "_platform")
     platform = Map.get(@platforms, platform_key, :web)
 
     {:cont, assign(socket, :platform, platform)}
