@@ -1,0 +1,25 @@
+<.form let={f} for={@changeset} phx-submit={@submit_event}>
+  <%= if @submit_event == "confirm_login" do %>
+    <div class="block my-3">
+      <p class="mb-3">Check your email for a login code and enter / paste it below.</p>
+      <%= text_input f, :login_code_confirmation,
+        required: true,
+        placeholder: "login code",
+        class: "items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg text-stone-400"
+      %>
+    </div>
+  <% else %>
+    <div class="block my-3">
+      <p class="mb-3">Welcome to NarwinChat.</p>
+      <%= text_input f, :email,
+        required: true,
+        placeholder: "email",
+        class: "items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg text-stone-400"
+      %>
+    </div>
+  <% end %>
+  <div class="block my-3">
+    <% button_label = if @submit_event == "confirm_login", do: "login", else: "send login link" %>
+    <%= submit button_label, [class: "inline-block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto"] %>
+  </div>
+</.form>

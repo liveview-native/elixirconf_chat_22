@@ -47,12 +47,13 @@ defmodule NarwinChat.MixProject do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
-      {:jason, "~> 1.2"},
+      {:jason, "~> 1.3"},
       {:plug_cowboy, "~> 2.5"},
       {:ecto_sqlite3, "~> 0.7.7"},
       {:faker, "~> 0.17"},
       {:inflex, "~> 2.0.0"},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
+      {:joken, "~> 2.5"}
     ]
   end
 

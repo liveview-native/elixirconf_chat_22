@@ -4,13 +4,7 @@ defmodule NarwinChatWeb.ChatLive do
 
   @impl true
   def render(assigns) do
-    case Map.get(assigns, :platform) do
-      :ios ->
-        render_ios(assigns)
-
-      :web ->
-        render_web(assigns)
-    end
+    render_native(assigns)
   end
 
   @impl true

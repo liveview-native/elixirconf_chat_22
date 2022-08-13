@@ -18,7 +18,8 @@ defmodule NarwinChatWeb.Router do
     scope "/", NarwinChatWeb do
       pipe_through :browser
 
-      live "/", ChatLive
+      live "/", LoginLive
+      live "/chat", ChatLive
     end
   end
 

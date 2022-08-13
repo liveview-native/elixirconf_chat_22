@@ -1,0 +1,31 @@
+<div>
+  <% messages = assigns[:messages] || [] %>
+
+  <ul class="rounded-lg bg-orange-200/25 h-96 w-full max-w-96 overflow-y-scroll text-left pl-3">
+    <%= for {user_messages, idx} <- messages |> Enum.chunk_by(& &1.user.id) |> Enum.with_index() do %>
+      <li class="py-1.5" id={"chunk-#{idx}"}>
+        <% user_name = user_messages |> List.first() |> get_in([:user, :name]) %>
+
+        <div>
+          <h1 class="font-bold">
+            <%= user_name %>
+          </h1>
+          <%= for {%{id: _id, text: text}, idx} <- Enum.with_index(user_messages) do %>
+            <div id={"message-#{idx}"} >
+              <span><%= text %></span>
+            </div>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <div class="mt-1">
+    <% buffer = assigns[:buffer] || "" %>
+    <form id="post" phx-change="set_buffer">
+      <input class="items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg text-stone-400" name="post[text]" value={buffer} placeholder="Message" />
+      <button class="inline-block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto" type="button" phx-click="send">
+        <text>Send</text>
+      </button>
+    </form>
+  </div>
+</div>

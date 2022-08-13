@@ -10,6 +10,8 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body class="bg-background">
-    <%= @inner_content %>
+    <main class="font-mono flex items-center justify-center min-h-screen w-full text-center">
+      <%= @inner_content %>
+    </main>
   </body>
 </html>
