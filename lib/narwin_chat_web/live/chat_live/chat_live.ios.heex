@@ -1,42 +1,37 @@
 <vstack>
-  <% messages = assigns[:messages] || [] %>
+  <list style="inset-grouped">
+    <% messages = assigns[:messages] || [] %>
 
-  <list nav-title="NarwinChat">
-    <%= for {user_messages, idx} <- messages |> Enum.chunk_by(& &1.user.id) |> Enum.with_index() do %>
-      <hstack alignment="center" id={"chunk-#{idx}"} list-row-separator="hidden" pad-top="8">
-        <% avatar = user_messages |> List.first() |> get_in([:user, :avatar]) %>
-        <% user_name = user_messages |> List.first() |> get_in([:user, :name]) %>
+    <%= for message_group <- messages |> Enum.chunk_by(& &1.user.id) do %>
+      <% first_message = List.first(message_group) %>
+      <% user_name = get_in(first_message, [:user, :name]) %>
+      <% message_group_user_id = "message_group_user_id_" <> first_message.id %>
+      <% message_group_id = "message_group_id_" <> first_message.id %>
 
-        <vstack alignment="center">
-          <asyncimage src={avatar} />
-        </vstack>
-        <vstack alignment="center">
-          <text background="#ff0000" alignment="leading" font="title3">
-            <%= user_name %>
-          </text>
-          <%= for {%{id: _id, text: text}, idx} <- Enum.with_index(user_messages) do %>
-            <%# todo: form helpers for native? %>
-            <vstack id={"message-#{idx}"} list-row-separator="hidden">
-              <text alignment="leading" font="subheadline"><%= text %></text>
-            </vstack>
-          <% end %>
-          <roundedrectangle />
-        </vstack>
+      <hstack id={message_group_user_id} frame-alignment="top" pad-leading="8" pad-top="0" pad-bottom="0" list-row-inset="0">
+        <text><%= user_name %></text>
+        <spacer />
       </hstack>
+      <vstack id={message_group_id} frame-alignment="top" pad="8" list-row-inset="0" list-row-separator="hidden">
+        <%= for message <- message_group do %>
+          <% user_message_id = "user_message_" <> message.id %>
+          <hstack frame-alignment="center" id={user_message_id}>
+            <text font="subheadline"><%= message.text %></text>
+            <spacer />
+          </hstack>
+        <% end %>
+      </vstack>
     <% end %>
   </list>
-  <hstack pad-left="16" pad-leading="16" pad-right="16" pad-bottom="8">
+  <hstack>
     <% buffer = assigns[:buffer] || "" %>
-    <form id="post" phx-change="set_buffer">
-      <textfield name="post[text]" value={buffer} border-style="none" clear-button="while-editing" placeholder="Message" />
-      <button phx-click="send" list-row-separator="hidden" list-row-inset="0" pad-leading="20" pad-trailing="20">
-        <zstack>
-          <hstack pad-top="12" pad-bottom="12">
-            <img system-name="plus.circle.fill" />
-            <text>Send</text>
-          </hstack>
-        </zstack>
-      </button>
-    </form>
+    <phx-form id="post" phx-change="set_buffer">
+      <hstack>
+        <textfield name="post[text]" value={buffer} border-style="none" clear-button="while-editing" placeholder="Message" />
+        <button phx-click="send" list-row-separator="hidden" list-row-inset="0">
+          <text>Send</text>
+        </button>
+      </hstack>
+    </phx-form>
   </hstack>
 </vstack>
