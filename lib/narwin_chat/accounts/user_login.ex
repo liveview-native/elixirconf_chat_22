@@ -28,6 +28,12 @@ defmodule NarwinChat.Accounts.UserLogin do
     |> attach_user()
   end
 
+  def confirmation_changeset(user_login, params) do
+    user_login
+    |> cast(params, @allowed_params)
+    |> check_login_confirmation()
+  end
+
   ###
 
   defp attach_login_code(%Ecto.Changeset{valid?: true} = changeset) do
@@ -53,5 +59,16 @@ defmodule NarwinChat.Accounts.UserLogin do
 
   defp generate_login_code do
     Enum.join([Words.random_big(), Words.random_big(), Words.random_big()], "-")
+  end
+
+  defp check_login_confirmation(changeset) do
+    code = get_field(changeset, :login_code)
+    confirmation = get_field(changeset, :login_code_confirmation)
+
+    if code == confirmation do
+      changeset
+    else
+      add_error(changeset, :login_code_confirmation, "does not match login code")
+    end
   end
 end

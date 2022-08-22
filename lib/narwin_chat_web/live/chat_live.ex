@@ -2,6 +2,8 @@ defmodule NarwinChatWeb.ChatLive do
   use NarwinChatWeb, :live_view
   use NarwinChatWeb.LiveViewNativeHelpers, template: "chat_live"
 
+  on_mount {NarwinChat.LiveAuth, {:redirect_to_login, :cont}}
+
   @impl true
   def render(assigns) do
     render_native(assigns)

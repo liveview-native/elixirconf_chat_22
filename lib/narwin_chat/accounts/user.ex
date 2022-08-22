@@ -6,5 +6,7 @@ defmodule NarwinChat.Accounts.User do
     field :last_name, :string
     field :email, :string
     field :is_admin, :boolean, default: false
+
+    timestamps()
   end
 end
