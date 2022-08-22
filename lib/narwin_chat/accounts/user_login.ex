@@ -40,7 +40,13 @@ defmodule NarwinChat.Accounts.UserLogin do
     email = get_field(changeset, :email)
     user = Repo.get_by(User, email: email)
 
-    put_change(changeset, :user, user)
+    case user do
+      nil ->
+        add_error(changeset, :user, "no such user")
+
+      user ->
+        put_change(changeset, :user, user)
+    end
   end
 
   defp attach_user(changeset), do: changeset

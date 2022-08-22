@@ -18,6 +18,13 @@
       %>
     </div>
   <% end %>
+  <%= if @errors do %>
+    <div class="block my-3 text-red-500">
+      <%= for {field, {message, _}} <- @errors do %>
+        <p><%= field %>: <%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
   <div class="block my-3">
     <% button_label = if @submit_event == "confirm_login", do: "login", else: "send login link" %>
     <%= submit button_label, [class: "inline-block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto"] %>
