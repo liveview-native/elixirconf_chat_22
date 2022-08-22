@@ -1,3 +1,39 @@
+<div class="block my-6 flex flex-col items-center">
+  <h2 class="text-2xl">Rooms</h2>
+
+  <form phx-submit="add_room" class="my-3">
+    <input type="text" class="block w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg placeholder:text-stone-400" name="name" placeholder="Name" />
+    <div class="flex items-end my-3">
+      <textarea name="description" placeholder="Description" class="block w-72 mr-3 bg-white ring-1 ring-stone-900/10  hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg placeholder:text-stone-400"></textarea>
+      <button type="submit" class="block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto">
+        Add
+      </button>
+    </div>
+  </form>
+
+  <table class="table-auto w-full">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for room <- @rooms do %>
+        <tr>
+          <td><%= room.name %></td>
+          <td><%= room.description %></td>
+          <td><button phx-click="delete_room" phx-value-id={room.id} class="bg-stone-900 hover:bg-stone-700 focus:ring-2 focus:ring-stone-40 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold px-6 my-2 rounded-md">Delete</button></td>
+        </tr>
+      <% end %>
+      <%= if length(@rooms) == 0 do %>
+        <tr><td colspan="3"><span class="italic">No rooms</span></td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 <div class="block my-6">
   <h2 class="text-2xl">Load Users</h2>
   
@@ -43,6 +79,9 @@
           <td><%= user.email %></td>
           <td><button phx-click="set_shadow_banned" phx-value-email={user.email} phx-value-banned="false" class="bg-stone-900 hover:bg-stone-700 focus:ring-2 focus:ring-stone-40 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold px-6 my-2 rounded-md">Unban</button></td>
         </tr>
+      <% end %>
+      <%= if length(@shadow_banned) == 0 do %>
+        <tr><td colspan="4"><span class="italic">No shadow bans</span></td></tr>
       <% end %>
     </tbody>
   </table>

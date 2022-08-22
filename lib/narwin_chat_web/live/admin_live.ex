@@ -4,6 +4,7 @@ defmodule NarwinChatWeb.AdminLive do
 
   alias NarwinChat.Repo
   alias NarwinChat.Accounts.User
+  alias NarwinChat.Chat.Room
 
   on_mount {NarwinChat.LiveAuth, {true, :redirect_to_login, :cont}}
 
@@ -14,7 +15,8 @@ defmodule NarwinChatWeb.AdminLive do
      |> assign(
        successfully_created_users: 0,
        csv_errors: [],
-       shadow_banned: get_shadow_banned_users()
+       shadow_banned: get_shadow_banned_users(),
+       rooms: get_rooms()
      )
      |> allow_upload(:users_csv, accept: [".csv"])}
   end
@@ -75,11 +77,33 @@ defmodule NarwinChatWeb.AdminLive do
     {:noreply, assign(socket, shadow_banned: get_shadow_banned_users())}
   end
 
+  @impl true
+  def handle_event("add_room", params, socket) do
+    %Room{}
+    |> Room.changeset(params)
+    |> Repo.insert!()
+
+    {:noreply, assign(socket, rooms: get_rooms())}
+  end
+
+  @impl true
+  def handle_event("delete_room", %{"id" => id}, socket) do
+    Room
+    |> Repo.get(id)
+    |> Repo.delete()
+
+    {:noreply, assign(socket, rooms: get_rooms())}
+  end
+
   defp get_shadow_banned_users() do
     Repo.all(
       from u in User,
         where: u.is_shadow_banned == true,
         order_by: [asc: u.first_name, asc: u.last_name]
     )
+  end
+
+  defp get_rooms() do
+    Repo.all(from r in Room, order_by: [asc: r.name])
   end
 end
