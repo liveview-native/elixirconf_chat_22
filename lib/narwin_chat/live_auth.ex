@@ -6,10 +6,12 @@ defmodule NarwinChat.LiveAuth do
   alias NarwinChatWeb.Router.Helpers, as: Routes
   alias NarwinChatWeb.{Endpoint, ChatLive, LoginLive}
 
-  def on_mount({fail_action, success_action}, _params, session, socket) do
+  def on_mount({require_admin, fail_action, success_action}, _params, session, socket) do
     with token when not is_nil(token) <- get_token(session, socket),
-         %UserToken{expires_at: expiry, user: user} <- Repo.get_by(UserToken, token: token),
-         :gt <- DateTime.compare(expiry, DateTime.utc_now()) do
+         %UserToken{expires_at: expiry, user: user} <-
+           Repo.get_by(UserToken, token: token) |> Repo.preload(:user),
+         :gt <- DateTime.compare(expiry, DateTime.utc_now()),
+         true <- !require_admin || user.is_admin do
       case success_action do
         :cont ->
           {:cont, assign(socket, user: user)}

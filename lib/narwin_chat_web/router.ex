@@ -22,6 +22,7 @@ defmodule NarwinChatWeb.Router do
     live_session :default, on_mount: NarwinChatWeb.InitAssigns do
       live "/", LoginLive
       live "/chat", ChatLive
+      live "/admin", AdminLive
     end
   end
 
