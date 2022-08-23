@@ -6,7 +6,7 @@ defmodule NarwinChatWeb.AdminLive do
   alias NarwinChat.Accounts.User
   alias NarwinChat.Chat.Room
 
-  on_mount {NarwinChat.LiveAuth, {true, :redirect_to_login, :cont}}
+  on_mount {NarwinChat.LiveAuth, {true, {:redirect, NarwinChatWeb.LoginLive}, :cont}}
 
   @impl true
   def mount(_params, _session, socket) do

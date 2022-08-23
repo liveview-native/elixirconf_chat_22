@@ -5,7 +5,7 @@ defmodule NarwinChatWeb.LobbyLive do
   alias NarwinChat.Dispatcher
   alias NarwinChat.Chat.Room
 
-  on_mount {NarwinChat.LiveAuth, {false, :redirect_to_login, :cont}}
+  on_mount {NarwinChat.LiveAuth, {false, {:redirect, NarwinChatWeb.LoginLive}, :cont}}
 
   @impl true
   def render(assigns) do
