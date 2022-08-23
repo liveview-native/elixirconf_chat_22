@@ -32,7 +32,7 @@ defmodule NarwinChat.Dispatcher do
 
   @spec post(integer(), integer(), String.t()) :: :ok
   def post(user_id, room_id, body) do
-    GenServer.cast(__MODULE__, {:message, user_id, room_id, body, self()})
+    GenServer.cast(__MODULE__, {:post, user_id, room_id, body, self()})
   end
 
   @impl true
@@ -60,7 +60,8 @@ defmodule NarwinChat.Dispatcher do
         from m in Message,
           where: m.room_id == ^room_id,
           order_by: [asc: m.inserted_at],
-          limit: 100
+          limit: 100,
+          preload: :user
       )
 
     new_listeners = Map.update(listeners, room_id, [from], fn existing -> [from | existing] end)
@@ -93,17 +94,15 @@ defmodule NarwinChat.Dispatcher do
         Logger.error("Error inserting message: #{inspect(changeset.errors)}")
 
       {:ok, message} ->
-        broadcast_message(listeners, sender_pid, Repo.preload(message, :user))
+        broadcast_message(listeners, Repo.preload(message, :user))
     end
 
     {:noreply, listeners}
   end
 
-  defp broadcast_message(listeners, sender_pid, message) do
+  defp broadcast_message(listeners, message) do
     for pid <- Map.get(listeners, message.room_id, []) do
-      unless pid == sender_pid do
-        send(pid, {:message, message})
-      end
+      send(pid, {:message, message})
     end
   end
 

@@ -1,29 +1,28 @@
 <div>
   <% messages = assigns[:messages] || [] %>
 
-  <ul class="rounded-lg bg-orange-200/25 h-96 w-full max-w-96 overflow-y-scroll text-left pl-3">
-    <%= for {user_messages, idx} <- messages |> Enum.chunk_by(& &1.user.id) |> Enum.with_index() do %>
-      <li class="py-1.5" id={"chunk-#{idx}"}>
-        <% user_name = user_messages |> List.first() |> get_in([:user, :name]) %>
+  <ul id="message-list" class="rounded-lg bg-orange-200/25 h-96 w-full max-w-96 overflow-y-scroll text-left pl-3">
+    <%= for {message, idx} <- messages |> Enum.with_index() do %>
+      <li class="py-1.5" id={"message-#{idx}"}>
+        <% user_name = "#{message.user.first_name} #{message.user.last_name}" %>
 
         <div>
-          <h1 class="font-bold">
-            <%= user_name %>
-          </h1>
-          <%= for {%{id: _id, text: text}, idx} <- Enum.with_index(user_messages) do %>
-            <div id={"message-#{idx}"} >
-              <span><%= text %></span>
-            </div>
-          <% end %>
+          <div class="flex">
+            <h1 class="font-bold grow">
+              <%= user_name %>
+            </h1>
+            <time><%= Calendar.strftime(message.inserted_at, "%I:%M %P") %></time>
+          </div>
+          <span><%= message.body %></span>
         </div>
       </li>
     <% end %>
   </ul>
   <div class="mt-1">
     <% buffer = assigns[:buffer] || "" %>
-    <form id="post" phx-change="set_buffer">
+    <form id="post" phx-change="set_buffer" phx-submit="send">
       <input class="items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg placeholder:text-stone-400" name="post[text]" value={buffer} placeholder="Message" />
-      <button class="inline-block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto" type="button" phx-click="send">
+      <button class="inline-block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto" type="submit">
         <text>Send</text>
       </button>
     </form>

@@ -2,6 +2,9 @@ defmodule NarwinChatWeb.ChatLive do
   use NarwinChatWeb, :live_view
   use NarwinChatWeb.LiveViewNativeHelpers, template: "chat_live"
 
+  alias NarwinChat.{Dispatcher, Repo}
+  alias NarwinChat.Chat.Room
+
   on_mount {NarwinChat.LiveAuth, {false, {:redirect, NarwinChatWeb.LoginLive}, :cont}}
 
   @impl true
@@ -10,19 +13,20 @@ defmodule NarwinChatWeb.ChatLive do
   end
 
   @impl true
-  def mount(_params, _session, socket) do
-    with true <- connected?(socket),
-         name <- generate_name(),
-         {:ok, %{messages: messages}} <- join_chat(name) do
+  def mount(%{"room" => room_id}, _session, socket) do
+    if connected?(socket) do
+      room = Repo.get(Room, String.to_integer(room_id))
+      messages = Dispatcher.join(room.id)
+
       socket =
         socket
         |> assign(:messages, messages)
-        |> assign(:name, name)
+        |> assign(:room, room)
+        |> push_event(:message_added, %{force_scroll: true})
 
       {:ok, socket}
     else
-      _ ->
-        {:ok, assign(socket, :messages, [])}
+      {:ok, assign(socket, :messages, [])}
     end
   end
 
@@ -34,37 +38,31 @@ defmodule NarwinChatWeb.ChatLive do
   @impl true
   def handle_event("send", _params, %{assigns: assigns} = socket) do
     send_message(assigns[:buffer])
+    Dispatcher.post(assigns.user.id, assigns.room.id, assigns.buffer)
 
     {:noreply, assign(socket, :buffer, "")}
   end
 
   @impl true
-  def handle_info({:refresh_state, state}, socket) do
-    {:noreply, assign(socket, :messages, state[:messages])}
+  def handle_info({:message, message}, socket) do
+    {:noreply,
+     socket
+     |> assign(:messages, socket.assigns.messages ++ [message])
+     |> push_event(:message_added, %{})}
   end
 
   @impl true
-  def terminate(_reason, _socket) do
-    leave_chat()
+  def terminate(_reason, socket) do
+    case socket.assigns do
+      %{room: room} ->
+        Dispatcher.leave(room.id)
+
+      _ ->
+        :ok
+    end
   end
 
   ###
-
-  defp join_chat(name) do
-    GenServer.call(
-      NarwinChat.Store,
-      {:join,
-       %{
-         avatar: "images/narwin.png",
-         name: name,
-         pid: self()
-       }}
-    )
-  end
-
-  defp leave_chat do
-    GenServer.call(NarwinChat.Store, {:leave, self()})
-  end
 
   defp send_message(buffer) do
     GenServer.call(
@@ -75,13 +73,5 @@ defmodule NarwinChatWeb.ChatLive do
          pid: self()
        }}
     )
-  end
-
-  defp generate_name do
-    name = Faker.Color.fancy_name() <> " " <> Faker.Person.first_name()
-
-    name
-    |> String.downcase()
-    |> Inflex.parameterize()
   end
 end

@@ -42,3 +42,13 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+window.addEventListener("phx:message_added", event => {
+	const list = document.getElementById("message-list");
+	if (!list) return;
+	const lastMessage = list.children[list.children.length - 1];
+	if (event.detail?.force_scroll || list.scrollTop === (list.scrollHeight - list.offsetHeight - lastMessage.offsetHeight)) {
+		list.scrollTo({top: list.scrollHeight - list.offsetHeight});
+	} else {
+		console.log("NOT scrolled to bottom");
+	}
+});

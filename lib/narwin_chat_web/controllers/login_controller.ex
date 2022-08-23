@@ -4,6 +4,6 @@ defmodule NarwinChatWeb.LoginController do
   def login(conn, %{"login_token" => token}) do
     conn
     |> put_session(:login_token, token)
-    |> redirect(to: Routes.live_path(conn, NarwinChatWeb.ChatLive))
+    |> redirect(to: Routes.live_path(conn, NarwinChatWeb.LobbyLive))
   end
 end
