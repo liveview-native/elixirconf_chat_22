@@ -4,15 +4,16 @@ defmodule NarwinChat.Dispatcher do
   import Ecto.Query
 
   alias NarwinChat.Repo
+  alias NarwinChat.Accounts.User
   alias NarwinChat.Chat.{Room, Message}
 
   def start_link(opts \\ [name: __MODULE__]) do
     GenServer.start_link(__MODULE__, nil, opts)
   end
 
-  @spec join_lobby() :: %{integer() => integer()}
-  def join_lobby() do
-    GenServer.call(__MODULE__, :join_lobby)
+  @spec join_lobby(integer()) :: %{integer() => integer()}
+  def join_lobby(user_id) do
+    GenServer.call(__MODULE__, {:join_lobby, user_id})
   end
 
   @spec leave_lobby() :: :ok
@@ -20,9 +21,9 @@ defmodule NarwinChat.Dispatcher do
     GenServer.cast(__MODULE__, {:leave_lobby, self()})
   end
 
-  @spec join(integer()) :: [Message.t()]
-  def join(room_id) do
-    GenServer.call(__MODULE__, {:join, room_id})
+  @spec join(integer(), integer()) :: [Message.t()]
+  def join(room_id, user_id) do
+    GenServer.call(__MODULE__, {:join, room_id, user_id})
   end
 
   @spec leave(integer()) :: :ok
@@ -32,27 +33,44 @@ defmodule NarwinChat.Dispatcher do
 
   @spec post(integer(), integer(), String.t()) :: :ok
   def post(user_id, room_id, body) do
-    GenServer.cast(__MODULE__, {:post, user_id, room_id, body, self()})
+    GenServer.cast(__MODULE__, {:post, user_id, room_id, body})
+  end
+
+  @spec get_users(integer()) :: [User.t()]
+  def get_users(room_id) do
+    user_ids = GenServer.call(__MODULE__, {:get_users, room_id})
+
+    Repo.all(
+      from u in User,
+        where: u.id in ^user_ids,
+        where: not u.is_shadow_banned,
+        order_by: [asc: u.first_name, asc: u.last_name]
+    )
   end
 
   @impl true
   def init(_) do
     {
       :ok,
-      # %{room_id | :lobby => [listener_pid]}
+      # %{room_id | :lobby => [{listener_pid, user_id}]}
       %{}
     }
   end
 
   @impl true
-  def handle_call(:join_lobby, {from, _}, listeners) do
+  def handle_call({:join_lobby, user_id}, {from, _}, listeners) do
     rooms = get_room_populations(listeners)
-    new_listeners = Map.update(listeners, :lobby, [from], fn existing -> [from | existing] end)
+
+    new_listeners =
+      Map.update(listeners, :lobby, [{from, user_id}], fn existing ->
+        [{from, user_id} | existing]
+      end)
+
     {:reply, rooms, new_listeners}
   end
 
   @impl true
-  def handle_call({:join, room_id}, {from, _}, listeners) do
+  def handle_call({:join, room_id, user_id}, {from, _}, listeners) do
     broadcast_room_event(listeners, :room_join, room_id)
 
     recent =
@@ -64,14 +82,30 @@ defmodule NarwinChat.Dispatcher do
           preload: :user
       )
 
-    new_listeners = Map.update(listeners, room_id, [from], fn existing -> [from | existing] end)
+    new_listeners =
+      Map.update(listeners, room_id, [{from, user_id}], fn existing ->
+        [{from, user_id} | existing]
+      end)
 
     {:reply, recent, new_listeners}
   end
 
   @impl true
+  def handle_call({:get_users, room_id}, _from, listeners) do
+    user_ids =
+      listeners
+      |> Map.get(room_id, [])
+      |> Enum.map(fn {_pid, user_id} -> user_id end)
+
+    {:reply, user_ids, listeners}
+  end
+
+  @impl true
   def handle_cast({:leave_lobby, pid}, listeners) do
-    {:noreply, Map.update(listeners, :lobby, [], fn existing -> List.delete(existing, pid) end)}
+    {:noreply,
+     Map.update(listeners, :lobby, [], fn existing ->
+       Enum.reject(existing, fn {p, _} -> p == pid end)
+     end)}
   end
 
   @impl true
@@ -79,13 +113,15 @@ defmodule NarwinChat.Dispatcher do
     broadcast_room_event(listeners, :room_leave, room_id)
 
     new_listeners =
-      Map.update(listeners, room_id, [], fn existing -> List.delete(existing, pid) end)
+      Map.update(listeners, room_id, [], fn existing ->
+        Enum.reject(existing, fn {p, _} -> p == pid end)
+      end)
 
     {:noreply, new_listeners}
   end
 
   @impl true
-  def handle_cast({:post, user_id, room_id, body, sender_pid}, listeners) do
+  def handle_cast({:post, user_id, room_id, body}, listeners) do
     %Message{}
     |> Message.changeset(%{user_id: user_id, room_id: room_id, body: body})
     |> Repo.insert()
@@ -101,7 +137,7 @@ defmodule NarwinChat.Dispatcher do
   end
 
   defp broadcast_message(listeners, message) do
-    for pid <- Map.get(listeners, message.room_id, []) do
+    for {pid, _} <- Map.get(listeners, message.room_id, []) do
       send(pid, {:message, message})
     end
   end
@@ -112,7 +148,7 @@ defmodule NarwinChat.Dispatcher do
   end
 
   defp broadcast_room_event(listeners, event, room_id) do
-    for pid <- Map.get(listeners, :lobby, []) do
+    for {pid, _} <- Map.get(listeners, :lobby, []) do
       send(pid, {event, room_id})
     end
   end

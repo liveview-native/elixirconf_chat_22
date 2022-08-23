@@ -15,7 +15,7 @@ defmodule NarwinChatWeb.LobbyLive do
   @impl true
   def mount(_params, _session, socket) do
     if connected?(socket) do
-      {:ok, assign(socket, rooms: Dispatcher.join_lobby())}
+      {:ok, assign(socket, rooms: Dispatcher.join_lobby(socket.assigns.user.id))}
     else
       {:ok, assign(socket, rooms: [])}
     end

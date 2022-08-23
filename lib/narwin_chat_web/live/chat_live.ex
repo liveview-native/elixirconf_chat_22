@@ -16,7 +16,7 @@ defmodule NarwinChatWeb.ChatLive do
   def mount(%{"room" => room_id}, _session, socket) do
     if connected?(socket) do
       room = Repo.get(Room, String.to_integer(room_id))
-      messages = Dispatcher.join(room.id)
+      messages = Dispatcher.join(room.id, socket.assigns.user.id)
 
       socket =
         socket

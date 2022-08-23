@@ -2,6 +2,17 @@ defmodule NarwinChat.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @type t() :: %__MODULE__{
+          id: integer(),
+          first_name: String.t(),
+          last_name: String.t(),
+          email: String.t(),
+          is_admin: boolean(),
+          is_shadow_banned: boolean(),
+          inserted_at: NaiveDateTime.t(),
+          updated_at: NaiveDateTime.t()
+        }
+
   schema "users" do
     field :first_name, :string
     field :last_name, :string

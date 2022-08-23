@@ -1,0 +1,13 @@
+<div>
+  <ul class="rounded-lg bg-orange-200/25 h-96 w-96 overflow-y-scroll text-left pl-3">
+    <%= for user <- @users do %>
+      <li class="py-1.5 flex items-baseline">
+          <h2 class="text-lg grow"><%= user.first_name %> <%= user.last_name %></h2>
+          <%= unless user.id == @user.id do %>
+            <button phx-click="toggle_block_user" phx-value-id={user.id} class="bg-stone-900 hover:bg-stone-700 focus:ring-2 focus:ring-stone-40 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold px-6 my-2 rounded-md"><%= if user.id in @blocked_users, do: "Unblock", else: "Block" %></button>
+          <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
