@@ -18,7 +18,8 @@ defmodule NarwinChat.Application do
       NarwinChatWeb.Endpoint,
       # Start a worker by calling: NarwinChat.Worker.start_link(arg)
       # {NarwinChat.Worker, arg}
-      {NarwinChat.Store, name: NarwinChat.Store}
+      {NarwinChat.Store, name: NarwinChat.Store},
+      {NarwinChat.Dispatcher, name: NarwinChat.Dispatcher}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

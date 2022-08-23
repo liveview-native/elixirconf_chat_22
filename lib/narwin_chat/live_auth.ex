@@ -4,7 +4,7 @@ defmodule NarwinChat.LiveAuth do
   alias NarwinChat.Repo
   alias NarwinChat.Accounts.UserToken
   alias NarwinChatWeb.Router.Helpers, as: Routes
-  alias NarwinChatWeb.{Endpoint, ChatLive, LoginLive}
+  alias NarwinChatWeb.Endpoint
 
   def on_mount({require_admin, fail_action, success_action}, _params, session, socket) do
     with token when not is_nil(token) <- get_token(session, socket),
@@ -16,8 +16,8 @@ defmodule NarwinChat.LiveAuth do
         :cont ->
           {:cont, assign(socket, user: user)}
 
-        :redirect_to_chat ->
-          {:halt, push_redirect(socket, to: Routes.live_path(Endpoint, ChatLive))}
+        {:redirect, view} ->
+          {:halt, push_redirect(socket, to: Routes.live_path(Endpoint, view))}
       end
     else
       _ ->
@@ -25,8 +25,8 @@ defmodule NarwinChat.LiveAuth do
           :cont ->
             {:cont, socket}
 
-          :redirect_to_login ->
-            {:halt, push_redirect(socket, to: Routes.live_path(Endpoint, LoginLive))}
+          {:redirect, view} ->
+            {:halt, push_redirect(socket, to: Routes.live_path(Endpoint, view))}
         end
     end
   end
