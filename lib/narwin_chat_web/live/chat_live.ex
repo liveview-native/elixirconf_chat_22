@@ -1,8 +1,10 @@
 defmodule NarwinChatWeb.ChatLive do
   use NarwinChatWeb, :live_view
   use NarwinChatWeb.LiveViewNativeHelpers, template: "chat_live"
+  import Ecto.Query
 
   alias NarwinChat.{Dispatcher, Repo}
+  alias NarwinChat.Accounts.UserBlock
   alias NarwinChat.Chat.Room
 
   on_mount {NarwinChat.LiveAuth, {false, {:redirect, NarwinChatWeb.LoginLive}, :cont}}
@@ -16,12 +18,23 @@ defmodule NarwinChatWeb.ChatLive do
   def mount(%{"room" => room_id}, _session, socket) do
     if connected?(socket) do
       room = Repo.get(Room, String.to_integer(room_id))
-      messages = Dispatcher.join(room.id, socket.assigns.user.id)
+
+      blocked_users =
+        Repo.all(
+          from b in UserBlock,
+            where: b.blocker_id == ^socket.assigns.user.id,
+            select: b.blockee_id
+        )
+
+      messages =
+        Dispatcher.join(room.id, socket.assigns.user.id)
+        |> Enum.reject(fn msg -> msg.user.id in blocked_users end)
 
       socket =
         socket
         |> assign(:messages, messages)
         |> assign(:room, room)
+        |> assign(:blocked_users, blocked_users)
         |> push_event(:message_added, %{force_scroll: true})
 
       {:ok, socket}
@@ -45,10 +58,14 @@ defmodule NarwinChatWeb.ChatLive do
 
   @impl true
   def handle_info({:message, message}, socket) do
-    {:noreply,
-     socket
-     |> assign(:messages, socket.assigns.messages ++ [message])
-     |> push_event(:message_added, %{})}
+    if message.user.id in socket.assigns.blocked_users do
+      {:noreply, socket}
+    else
+      {:noreply,
+       socket
+       |> assign(:messages, socket.assigns.messages ++ [message])
+       |> push_event(:message_added, %{})}
+    end
   end
 
   @impl true
