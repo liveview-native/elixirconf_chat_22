@@ -1,5 +1,7 @@
 import Config
 
+config :narwin_chat, NarwinChat.Repo, database: "/data/database.db"
+
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
 # when generating URLs.
@@ -10,7 +12,8 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :narwin_chat, NarwinChatWeb.Endpoint,
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: ["//elixirconf22chat.fly.dev", "//chatapp.dockyard.com"]
 
 # Do not print debug messages in production
 config :logger, level: :info

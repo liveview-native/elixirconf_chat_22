@@ -49,7 +49,6 @@ defmodule NarwinChat.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.3"},
       {:plug_cowboy, "~> 2.5"},
-      {:ecto_sqlite3, "~> 0.7.7"},
       {:faker, "~> 0.17"},
       {:inflex, "~> 2.0.0"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
