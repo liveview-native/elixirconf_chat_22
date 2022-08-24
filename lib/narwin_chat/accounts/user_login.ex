@@ -10,11 +10,12 @@ defmodule NarwinChat.Accounts.UserLogin do
     field :email, :string
     field :login_code, :string, virtual: true
     field :login_code_confirmation, :string
+    field :password, :string
 
     embeds_one :user, User
   end
 
-  @optional_params ~w(login_code_confirmation)a
+  @optional_params ~w(login_code_confirmation password)a
   @required_params ~w(email)a
 
   @allowed_params @optional_params ++ @required_params
@@ -32,6 +33,12 @@ defmodule NarwinChat.Accounts.UserLogin do
     user_login
     |> cast(params, @allowed_params)
     |> check_login_confirmation()
+  end
+
+  def password_changeset(user_login, params) do
+    user_login
+    |> cast(params, @allowed_params)
+    |> check_password()
   end
 
   ###
@@ -69,6 +76,19 @@ defmodule NarwinChat.Accounts.UserLogin do
       changeset
     else
       add_error(changeset, :login_code_confirmation, "does not match login code")
+    end
+  end
+
+  defp check_password(changeset) do
+    password = get_field(changeset, :password)
+    user = get_field(changeset, :user)
+
+    case Argon2.check_pass(user, password) do
+      {:ok, _user} ->
+        changeset
+
+      {:error, error} ->
+        add_error(changeset, :password, error)
     end
   end
 end

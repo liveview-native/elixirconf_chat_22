@@ -11,6 +11,10 @@ defmodule NarwinChat.Accounts do
     UserLogin.confirmation_changeset(changeset, params)
   end
 
+  def confirm_password_changeset(changeset, params) do
+    UserLogin.password_changeset(changeset, params)
+  end
+
   def request_login_link(%Ecto.Changeset{data: %UserLogin{}} = login_changeset) do
     if login_changeset.valid? do
       login_changeset
