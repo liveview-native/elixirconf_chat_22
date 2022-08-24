@@ -25,6 +25,12 @@ defmodule NarwinChatWeb.LoginLive do
   end
 
   @impl true
+  def handle_event("login", %{"email" => _} = login_params, socket) do
+    # native doesn't convert foo[bar] to %{"foo" => %{"bar" => ...}}, so the fields have different names
+    handle_event("login", %{"user_login" => login_params}, socket)
+  end
+
+  @impl true
   def handle_event("login", %{"user_login" => login_params}, socket) do
     login_params
     |> Accounts.new_login_changeset()
@@ -50,6 +56,11 @@ defmodule NarwinChatWeb.LoginLive do
   end
 
   @impl true
+  def handle_event("confirm_login", %{"login_code_confirmation" => _} = login_params, socket) do
+    handle_event("confirm_login", %{"user_login" => login_params}, socket)
+  end
+
+  @impl true
   def handle_event("confirm_login", %{"user_login" => login_params}, socket) do
     changeset = Accounts.confirm_login_changeset(socket.assigns.changeset, login_params)
 
@@ -63,12 +74,16 @@ defmodule NarwinChatWeb.LoginLive do
           {:noreply, assign(socket, errors: changeset.errors, submit_event: "confirm_login")}
 
         {:ok, %Accounts.UserToken{token: token}} ->
-          # need to redirect through a regular controller to set the cookie
-          # TODO: for native, this will need to push an event to let it persist the token and then redirect to /chat on its own
-          {:noreply,
-           redirect(socket,
-             to: Routes.login_path(NarwinChatWeb.Endpoint, :login, login_token: token)
-           )}
+          case socket.assigns.platform do
+            :ios ->
+              {:noreply, push_event(socket, "login_token", %{token: token})}
+
+            :web ->
+              {:noreply,
+               redirect(socket,
+                 to: Routes.login_path(NarwinChatWeb.Endpoint, :login, login_token: token)
+               )}
+          end
       end
     else
       {:noreply, assign(socket, errors: changeset.errors, submit_event: "confirm_login")}
