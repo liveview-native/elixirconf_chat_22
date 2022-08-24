@@ -74,13 +74,14 @@ defmodule NarwinChat.Dispatcher do
     broadcast_room_event(listeners, :room_join, room_id)
 
     recent =
-      Repo.all(
-        from m in Message,
-          where: m.room_id == ^room_id,
-          order_by: [asc: m.inserted_at],
-          limit: 100,
-          preload: :user
-      )
+      Message
+      |> where([m], m.room_id == ^room_id)
+      |> join(:inner, [m], u in User, on: m.user_id == u.id)
+      |> where([m, u], not u.is_shadow_banned)
+      |> limit(100)
+      |> order_by([m, u], asc: m.inserted_at)
+      |> preload([m, u], user: u)
+      |> Repo.all()
 
     new_listeners =
       Map.update(listeners, room_id, [{from, user_id}], fn existing ->
@@ -130,7 +131,11 @@ defmodule NarwinChat.Dispatcher do
         Logger.error("Error inserting message: #{inspect(changeset.errors)}")
 
       {:ok, message} ->
-        broadcast_message(listeners, Repo.preload(message, :user))
+        message = Repo.preload(message, :user)
+
+        unless message.user.is_shadow_banned do
+          broadcast_message(listeners, message)
+        end
     end
 
     {:noreply, listeners}
