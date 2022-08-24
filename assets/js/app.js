@@ -52,3 +52,6 @@ window.addEventListener("phx:message_added", event => {
 		console.log("NOT scrolled to bottom");
 	}
 });
+window.addEventListener("phx:clear_message_field", event => {
+	document.getElementById("post").querySelector("input").value = "";
+});

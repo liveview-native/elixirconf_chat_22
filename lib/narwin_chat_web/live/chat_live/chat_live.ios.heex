@@ -1,36 +1,31 @@
-<vstack>
-  <list style="inset-grouped">
+<vstack nav-title={@room.name}>
+  <messages-list>
     <% messages = assigns[:messages] || [] %>
 
-    <%= for message_group <- messages |> Enum.chunk_by(& &1.user.id) do %>
-      <% first_message = List.first(message_group) %>
-      <% user_name = get_in(first_message, [:user, :name]) %>
-      <% message_group_user_id = "message_group_user_id_" <> first_message.id %>
-      <% message_group_id = "message_group_id_" <> first_message.id %>
+    <vstack>
+      <%= for message <- messages do %>
+        <% user_name = "#{message.user.first_name} #{message.user.last_name}" %>
+        <% message_id = to_string(message.id) %>
 
-      <hstack id={message_group_user_id} frame-alignment="top" pad-leading="8" pad-top="0" pad-bottom="0" list-row-inset="0">
-        <text><%= user_name %></text>
-        <spacer />
-      </hstack>
-      <vstack id={message_group_id} frame-alignment="top" pad="8" list-row-inset="0" list-row-separator="hidden">
-        <%= for message <- message_group do %>
-          <% user_message_id = "user_message_" <> message.id %>
-          <hstack frame-alignment="center" id={user_message_id}>
-            <text font="subheadline"><%= message.text %></text>
+        <vstack id={message_id} alignment="leading" pad-leading="8" pad-trailing="8" pad-top="4" pad-bottom="4">
+          <hstack>
+            <text font="body" font-weight="bold"><%= user_name %></text>
             <spacer />
+            <local-time datetime={NaiveDateTime.to_iso8601(message.inserted_at) <> "Z"} />
           </hstack>
-        <% end %>
-      </vstack>
-    <% end %>
-  </list>
-  <hstack>
-    <% buffer = assigns[:buffer] || "" %>
-    <phx-form id="post" phx-change="set_buffer">
+          <text frame-alignment="leading"><%= message.body %></text>
+        </vstack>
+      <% end %>
+    </vstack>
+  </messages-list>
+  <rectangle frame-height="1" fill-color="#cccccc" />
+  <hstack pad-leading="8" pad-trailing="8">
+    <phx-form id="post" phx-submit="send">
       <hstack>
-        <textfield name="post[text]" value={buffer} border-style="none" clear-button="while-editing" placeholder="Message" />
-        <button phx-click="send" list-row-separator="hidden" list-row-inset="0">
+        <textfield name="text" border-style="none" clear-button="while-editing" placeholder="Message" />
+        <phx-submit-button after-submit="clear">
           <text>Send</text>
-        </button>
+        </phx-submit-button>
       </hstack>
     </phx-form>
   </hstack>

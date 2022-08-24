@@ -1,4 +1,4 @@
-<vstack>
+<vstack nav-title="Lobby">
   <list style="inset-grouped">
     <%= for {room, population} <- @rooms do %>
       <navigationlink id={"room_#{room.id}"} data-phx-link="redirect" data-phx-link-state="push" data-phx-href={Routes.live_path(@socket, NarwinChatWeb.ChatLive, room.id)}>

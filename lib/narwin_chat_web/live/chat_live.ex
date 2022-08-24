@@ -44,16 +44,10 @@ defmodule NarwinChatWeb.ChatLive do
   end
 
   @impl true
-  def handle_event("set_buffer", params, socket) do
-    {:noreply, assign(socket, :buffer, get_in(params, ["post", "text"]))}
-  end
+  def handle_event("send", %{"text" => body}, %{assigns: assigns} = socket) do
+    Dispatcher.post(assigns.user.id, assigns.room.id, body)
 
-  @impl true
-  def handle_event("send", _params, %{assigns: assigns} = socket) do
-    send_message(assigns[:buffer])
-    Dispatcher.post(assigns.user.id, assigns.room.id, assigns.buffer)
-
-    {:noreply, assign(socket, :buffer, "")}
+    {:noreply, push_event(socket, :clear_message_field, %{})}
   end
 
   @impl true
@@ -80,15 +74,4 @@ defmodule NarwinChatWeb.ChatLive do
   end
 
   ###
-
-  defp send_message(buffer) do
-    GenServer.call(
-      NarwinChat.Store,
-      {:message,
-       %{
-         message: buffer,
-         pid: self()
-       }}
-    )
-  end
 end

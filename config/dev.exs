@@ -18,7 +18,7 @@ config :narwin_chat, NarwinChat.Repo,
 config :narwin_chat, NarwinChatWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 8080],
+  http: [ip: {0, 0, 0, 0}, port: 8080],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

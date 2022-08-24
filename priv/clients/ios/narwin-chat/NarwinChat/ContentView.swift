@@ -9,12 +9,20 @@ import SwiftUI
 @_spi(NarwinChat) import PhoenixLiveViewNative
 
 private var baseURL: URL {
-    URL(string: "http://localhost:8080/")!
+    #if DEBUG
+    if let s = ProcessInfo.processInfo.environment["NARWINCHAT_BASE_URL"] {
+        return URL(string: s)!
+    } else {
+        return URL(string: "http://localhost:8080/")!
+    }
+    #else
+    return URL(string: "https://chatapp.dockyard.com/")
+    #endif
 }
 
 @MainActor
 struct ContentView: View {
-    @State var coordinator: LiveViewCoordinator<EmptyRegistry> = {
+    @State var coordinator: LiveViewCoordinator<MyRegistry> = {
         var config = LiveViewConfiguration()
         config.navigationMode = .enabled
         config.eventHandlersEnabled = true
@@ -26,7 +34,7 @@ struct ContentView: View {
                 return [:]
             }
         }
-        let coordinator = LiveViewCoordinator(baseURL, config: config)
+        let coordinator = LiveViewCoordinator<MyRegistry>(baseURL, config: config)
         coordinator.handleEvent("login_token") { payload in
             LocalData.loginToken = (payload["token"] as! String)
             var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)!

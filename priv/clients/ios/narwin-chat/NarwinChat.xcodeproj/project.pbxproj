@@ -16,6 +16,9 @@
 		2FBF3489288B086300683416 /* NarwinChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF3488288B086300683416 /* NarwinChatUITests.swift */; };
 		2FBF348B288B086300683416 /* NarwinChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF348A288B086300683416 /* NarwinChatUITestsLaunchTests.swift */; };
 		D69ECC5128B6897C003ACCE8 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5028B6897C003ACCE8 /* LocalData.swift */; };
+		D69ECC5328B6AB6F003ACCE8 /* MyRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5228B6AB6F003ACCE8 /* MyRegistry.swift */; };
+		D69ECC5528B6AB9E003ACCE8 /* LocalTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5428B6AB9E003ACCE8 /* LocalTime.swift */; };
+		D69ECC5728B6ADC8003ACCE8 /* MessagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5628B6ADC8003ACCE8 /* MessagesList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		2FBF3488288B086300683416 /* NarwinChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarwinChatUITests.swift; sourceTree = "<group>"; };
 		2FBF348A288B086300683416 /* NarwinChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarwinChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D69ECC5028B6897C003ACCE8 /* LocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
+		D69ECC5228B6AB6F003ACCE8 /* MyRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRegistry.swift; sourceTree = "<group>"; };
+		D69ECC5428B6AB9E003ACCE8 /* LocalTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTime.swift; sourceTree = "<group>"; };
+		D69ECC5628B6ADC8003ACCE8 /* MessagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,9 @@
 				2FBF346D288B086200683416 /* NarwinChatApp.swift */,
 				2FBF346F288B086200683416 /* ContentView.swift */,
 				D69ECC5028B6897C003ACCE8 /* LocalData.swift */,
+				D69ECC5228B6AB6F003ACCE8 /* MyRegistry.swift */,
+				D69ECC5428B6AB9E003ACCE8 /* LocalTime.swift */,
+				D69ECC5628B6ADC8003ACCE8 /* MessagesList.swift */,
 				2FBF3471288B086300683416 /* Assets.xcassets */,
 				2FBF3473288B086300683416 /* Preview Content */,
 			);
@@ -285,8 +294,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D69ECC5128B6897C003ACCE8 /* LocalData.swift in Sources */,
+				D69ECC5528B6AB9E003ACCE8 /* LocalTime.swift in Sources */,
 				2FBF3470288B086200683416 /* ContentView.swift in Sources */,
+				D69ECC5328B6AB6F003ACCE8 /* MyRegistry.swift in Sources */,
 				2FBF346E288B086200683416 /* NarwinChatApp.swift in Sources */,
+				D69ECC5728B6ADC8003ACCE8 /* MessagesList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +461,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NarwinChat/Preview Content\"";
+				DEVELOPMENT_TEAM = 8YF596VCP4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -462,7 +475,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DockYard.NarwinChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dockyard.NarwinChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -478,6 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NarwinChat/Preview Content\"";
+				DEVELOPMENT_TEAM = 8YF596VCP4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -491,7 +505,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DockYard.NarwinChat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dockyard.NarwinChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
