@@ -60,6 +60,11 @@ defmodule NarwinChatWeb.LoginLive do
   end
 
   @impl true
+  def handle_event("confirm_password", %{"password" => _} = login_params, socket) do
+    handle_event("confirm_password", %{"user_login" => login_params}, socket)
+  end
+
+  @impl true
   def handle_event("confirm_login", %{"user_login" => login_params}, socket) do
     changeset = Accounts.confirm_login_changeset(socket.assigns.changeset, login_params)
 
