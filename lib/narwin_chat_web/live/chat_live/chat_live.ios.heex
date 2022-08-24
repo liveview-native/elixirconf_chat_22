@@ -1,4 +1,4 @@
-<vstack nav-title={@room.name}>
+<vstack nav-title={@room.name} roster-link={Routes.live_path(@socket, NarwinChatWeb.RosterLive, @room.id)}>
   <messages-list>
     <% messages = assigns[:messages] || [] %>
 
