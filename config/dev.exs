@@ -16,7 +16,8 @@ config :narwin_chat, NarwinChatWeb.Endpoint,
   secret_key_base: "h0TVEvvPnltwHWXf9bet5SQKsSu42nvo4l9bfYGd7eWoKZHa8/trF8lp3RuvT2ud",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support

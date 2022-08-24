@@ -17,7 +17,15 @@ defmodule NarwinChatWeb.Router do
   scope "/", NarwinChatWeb do
     pipe_through :browser
 
-    live "/", ChatLive
+    get "/login", LoginController, :login
+
+    live_session :default, on_mount: NarwinChatWeb.InitAssigns do
+      live "/", LoginLive
+      live "/lobby", LobbyLive
+      live "/room/:room", ChatLive
+      live "/room/:room/roster", RosterLive
+      live "/admin", AdminLive
+    end
   end
 
   # Other scopes may use custom stacks.

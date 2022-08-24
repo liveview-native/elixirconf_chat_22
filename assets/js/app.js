@@ -1,6 +1,5 @@
 // We import the CSS which is extracted to its own file by esbuild.
 // Remove this line if you add a your own CSS build pipeline (e.g postcss).
-import "../css/app.css"
 
 // If you want to use Phoenix channels, run `mix help phx.gen.channel`
 // to get started and then uncomment the line below.
@@ -43,3 +42,13 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+window.addEventListener("phx:message_added", event => {
+	const list = document.getElementById("message-list");
+	if (!list) return;
+	const lastMessage = list.children[list.children.length - 1];
+	if (event.detail?.force_scroll || list.scrollTop === (list.scrollHeight - list.offsetHeight - lastMessage.offsetHeight)) {
+		list.scrollTo({top: list.scrollHeight - list.offsetHeight});
+	} else {
+		console.log("NOT scrolled to bottom");
+	}
+});

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F389F7828AF0A6F00E18297 /* PhoenixLiveViewNative in Frameworks */ = {isa = PBXBuildFile; productRef = 2F389F7728AF0A6F00E18297 /* PhoenixLiveViewNative */; };
 		2FBF346E288B086200683416 /* NarwinChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF346D288B086200683416 /* NarwinChatApp.swift */; };
 		2FBF3470288B086200683416 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF346F288B086200683416 /* ContentView.swift */; };
 		2FBF3472288B086300683416 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FBF3471288B086300683416 /* Assets.xcassets */; };
@@ -14,7 +15,6 @@
 		2FBF347F288B086300683416 /* NarwinChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF347E288B086300683416 /* NarwinChatTests.swift */; };
 		2FBF3489288B086300683416 /* NarwinChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF3488288B086300683416 /* NarwinChatUITests.swift */; };
 		2FBF348B288B086300683416 /* NarwinChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF348A288B086300683416 /* NarwinChatUITestsLaunchTests.swift */; };
-		2FBF34A1288B0C0F00683416 /* PhoenixLiveViewNative in Frameworks */ = {isa = PBXBuildFile; productRef = 2FBF34A0288B0C0F00683416 /* PhoenixLiveViewNative */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F2CB475289D9E6500E0F92F /* liveview-client-swiftui */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "liveview-client-swiftui"; path = "../../../../../liveview-client-swiftui"; sourceTree = "<group>"; };
+		2F389F7128AF09C600E18297 /* liveview-client-swiftui */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "liveview-client-swiftui"; path = "../../../../../liveview-client-swiftui"; sourceTree = "<group>"; };
 		2FBF346A288B086200683416 /* NarwinChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NarwinChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FBF346D288B086200683416 /* NarwinChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarwinChatApp.swift; sourceTree = "<group>"; };
 		2FBF346F288B086200683416 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FBF34A1288B0C0F00683416 /* PhoenixLiveViewNative in Frameworks */,
+				2F389F7828AF0A6F00E18297 /* PhoenixLiveViewNative in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +135,7 @@
 		2FBF3498288B09A000683416 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				2F2CB475289D9E6500E0F92F /* liveview-client-swiftui */,
+				2F389F7128AF09C600E18297 /* liveview-client-swiftui */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -161,11 +161,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				2FBF349B288B09FD00683416 /* PBXTargetDependency */,
+				2F389F7628AF0A1200E18297 /* PBXTargetDependency */,
 			);
 			name = NarwinChat;
 			packageProductDependencies = (
-				2FBF34A0288B0C0F00683416 /* PhoenixLiveViewNative */,
+				2F389F7728AF0A6F00E18297 /* PhoenixLiveViewNative */,
 			);
 			productName = NarwinChat;
 			productReference = 2FBF346A288B086200683416 /* NarwinChat.app */;
@@ -306,6 +306,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2F389F7628AF0A1200E18297 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2F389F7528AF0A1200E18297 /* PhoenixLiveViewNative */;
+		};
 		2FBF347C288B086300683416 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2FBF3469288B086200683416 /* NarwinChat */;
@@ -315,10 +319,6 @@
 			isa = PBXTargetDependency;
 			target = 2FBF3469288B086200683416 /* NarwinChat */;
 			targetProxy = 2FBF3485288B086300683416 /* PBXContainerItemProxy */;
-		};
-		2FBF349B288B09FD00683416 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 2FBF349A288B09FD00683416 /* PhoenixLiveViewNative */;
 		};
 /* End PBXTargetDependency section */
 
@@ -609,11 +609,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2FBF349A288B09FD00683416 /* PhoenixLiveViewNative */ = {
+		2F389F7528AF0A1200E18297 /* PhoenixLiveViewNative */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PhoenixLiveViewNative;
 		};
-		2FBF34A0288B0C0F00683416 /* PhoenixLiveViewNative */ = {
+		2F389F7728AF0A6F00E18297 /* PhoenixLiveViewNative */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PhoenixLiveViewNative;
 		};

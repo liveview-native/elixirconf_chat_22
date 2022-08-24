@@ -1,0 +1,88 @@
+<div class="block my-6 flex flex-col items-center">
+  <h2 class="text-2xl">Rooms</h2>
+
+  <form phx-submit="add_room" class="my-3">
+    <input type="text" class="block w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg placeholder:text-stone-400" name="name" placeholder="Name" />
+    <div class="flex items-end my-3">
+      <textarea name="description" placeholder="Description" class="block w-72 mr-3 bg-white ring-1 ring-stone-900/10  hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg placeholder:text-stone-400"></textarea>
+      <button type="submit" class="block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto">
+        Add
+      </button>
+    </div>
+  </form>
+
+  <table class="table-auto w-full">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for room <- @rooms do %>
+        <tr>
+          <td><%= room.name %></td>
+          <td><%= room.description %></td>
+          <td><button phx-click="delete_room" phx-value-id={room.id} class="bg-stone-900 hover:bg-stone-700 focus:ring-2 focus:ring-stone-40 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold px-6 my-2 rounded-md">Delete</button></td>
+        </tr>
+      <% end %>
+      <%= if length(@rooms) == 0 do %>
+        <tr><td colspan="3"><span class="italic">No rooms</span></td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="block my-6">
+  <h2 class="text-2xl">Load Users</h2>
+  
+  <form phx-change="validate" phx-submit="load_users">
+    <%= live_file_input @uploads.users_csv, class: "file:bg-stone-900 file:hover:bg-stone-700 file:focus:outline-none file:focus:ring-2 file:focus:ring-stone-400 file:focus:ring-offset-2 file:focus:ring-offset-stone-50 file:text-white file:font-semibold file:h-12 file:px-6 file:rounded-lg file:border-none" %>
+    <button type="submit" class="bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg">Upload</button>
+  </form>
+  <%= if @successfully_created_users > 0 do %>
+    <p>Successfully added <%= @successfully_created_users %> user(s)</p>
+  <% end %>
+  <%= for error <- @csv_errors do %>
+    <p class="text-red-500">
+      <%= error %>
+    </p>
+  <% end %>
+</div>
+
+<div class="block my-6">
+  <h2 class="text-2xl">Shadow Ban</h2>
+
+  <form phx-submit="set_shadow_banned" class="my-3">
+    <input type="hidden" name="banned" value="true">
+    <input type="text" class="items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg placeholder:text-stone-400" name="email" placeholder="Email" />
+    <button type="submit" class="inline-block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto">
+      Ban
+    </button>
+  </form>
+
+  <table class="table-auto w-full">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for user <- @shadow_banned do %>
+        <tr class="hover:bg-black/10">
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+          <td><button phx-click="set_shadow_banned" phx-value-email={user.email} phx-value-banned="false" class="bg-stone-900 hover:bg-stone-700 focus:ring-2 focus:ring-stone-40 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold px-6 my-2 rounded-md">Unban</button></td>
+        </tr>
+      <% end %>
+      <%= if length(@shadow_banned) == 0 do %>
+        <tr><td colspan="4"><span class="italic">No shadow bans</span></td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

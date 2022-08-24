@@ -1,0 +1,15 @@
+<div>
+  <ul class="rounded-lg bg-orange-200/25 h-96 w-96 overflow-y-scroll text-left pl-3">
+    <%= for {room, population} <- @rooms do %>
+      <li class="py-1.5">
+        <%= live_redirect to: Routes.live_path(@socket, NarwinChatWeb.ChatLive, room.id), class: "flex items-baseline" do %>
+          <div class="grow hover:underline">
+            <h2 class="text-lg"><%= room.name %></h2>
+            <h3 class="text-sm"><%= room.description %></h3>
+          </div>
+          <p class="text-sm"><%= population %> <%= Inflex.inflect("person", population) %></p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

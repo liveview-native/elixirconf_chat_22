@@ -1,0 +1,37 @@
+<vstack>
+  <list style="inset-grouped">
+    <% messages = assigns[:messages] || [] %>
+
+    <%= for message_group <- messages |> Enum.chunk_by(& &1.user.id) do %>
+      <% first_message = List.first(message_group) %>
+      <% user_name = get_in(first_message, [:user, :name]) %>
+      <% message_group_user_id = "message_group_user_id_" <> first_message.id %>
+      <% message_group_id = "message_group_id_" <> first_message.id %>
+
+      <hstack id={message_group_user_id} frame-alignment="top" pad-leading="8" pad-top="0" pad-bottom="0" list-row-inset="0">
+        <text><%= user_name %></text>
+        <spacer />
+      </hstack>
+      <vstack id={message_group_id} frame-alignment="top" pad="8" list-row-inset="0" list-row-separator="hidden">
+        <%= for message <- message_group do %>
+          <% user_message_id = "user_message_" <> message.id %>
+          <hstack frame-alignment="center" id={user_message_id}>
+            <text font="subheadline"><%= message.text %></text>
+            <spacer />
+          </hstack>
+        <% end %>
+      </vstack>
+    <% end %>
+  </list>
+  <hstack>
+    <% buffer = assigns[:buffer] || "" %>
+    <phx-form id="post" phx-change="set_buffer">
+      <hstack>
+        <textfield name="post[text]" value={buffer} border-style="none" clear-button="while-editing" placeholder="Message" />
+        <button phx-click="send" list-row-separator="hidden" list-row-inset="0">
+          <text>Send</text>
+        </button>
+      </hstack>
+    </phx-form>
+  </hstack>
+</vstack>
