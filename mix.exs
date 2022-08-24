@@ -54,7 +54,8 @@ defmodule NarwinChat.MixProject do
       {:inflex, "~> 2.0.0"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
       {:joken, "~> 2.5"},
-      {:csv, "~> 2.4"}
+      {:csv, "~> 2.4"},
+      {:hackney, "~> 1.18"}
     ]
   end
 
