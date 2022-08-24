@@ -1,31 +1,23 @@
 <vstack nav-title="ElixirConf 2022" pad-leading="16" pad-trailing="16">
-  <%= case @submit_event do %>
-    <% "confirm_login" -> %>
-      <text>If your email address is found, you will receive a login code. Submit it below to login</text>
-
-    <% "confirm_password" -> %>
-      <text>Enter your password below to login</text>
-
-    <% _ -> %>
-      <text>Please provide the email address associated with your conference ticket:</text>
-  <% end %>
-
   <phx-form id="login" phx-submit={@submit_event}>
     <%= case @submit_event do %>
       <% "confirm_login" -> %>
+        <text>If your email address is found, you will receive a login code. Submit it below to login</text>
         <textfield name="login_code_confirmation" placeholder="Login Code" autocorrection="no" autocapitalization="none" />
 
       <% "confirm_password" -> %>
+        <text>Enter your password below to login</text>
         <textfield name="password" placeholder="Password" autocorrection="no" autocapitalization="none" is-secure-text-entry="yes" />
 
       <% _ -> %>
+        <text>Please provide the email address associated with your conference ticket:</text>
         <textfield name="email" placeholder="Email" autocorrection="no" autocapitalization="none" keyboard="email"/>
     <% end %>
     <phx-submit-button>
     <%= if @submit_event in ["confirm_login", "confirm_password"] do %>
       <text>Login</text>
     <% else %>
-      <text>Send Login Link</text>
+      <text>Continue</text>
     <% end %>
     </phx-submit-button>
   </phx-form>
