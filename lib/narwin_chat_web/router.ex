@@ -18,6 +18,9 @@ defmodule NarwinChatWeb.Router do
     pipe_through :browser
 
     get "/login", LoginController, :login
+    get "/support", SupportController, :support
+    post "/support", SupportController, :support_form_submit
+    get "/privacy", SupportController, :privacy_policy
 
     live_session :default, on_mount: NarwinChatWeb.InitAssigns do
       live "/", LoginLive

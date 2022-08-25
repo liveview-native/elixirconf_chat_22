@@ -2,7 +2,7 @@ defmodule NarwinChatWeb.AdminLive do
   use NarwinChatWeb, :live_view
   import Ecto.Query
 
-  alias NarwinChat.Repo
+  alias NarwinChat.{Repo, SupportMessage}
   alias NarwinChat.Accounts.User
   alias NarwinChat.Chat.Room
 
@@ -16,7 +16,8 @@ defmodule NarwinChatWeb.AdminLive do
        successfully_created_users: 0,
        csv_errors: [],
        shadow_banned: get_shadow_banned_users(),
-       rooms: get_rooms()
+       rooms: get_rooms(),
+       support_messages: Repo.all(SupportMessage)
      )
      |> allow_upload(:users_csv, accept: [".csv"])}
   end

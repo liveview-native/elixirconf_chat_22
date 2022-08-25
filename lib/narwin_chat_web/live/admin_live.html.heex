@@ -86,3 +86,24 @@
     </tbody>
   </table>
 </div>
+
+<div class="block my-6">
+  <h2 class="text-2xl">Support Messages</h2>
+
+  <table class="table-auto w-full">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for message <- @support_messages do %>
+        <tr>
+          <td><a href={"mailto:" <> message.email}><%= message.email %></a></td>
+          <td><%= message.message %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
