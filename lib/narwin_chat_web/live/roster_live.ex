@@ -33,6 +33,7 @@ defmodule NarwinChatWeb.RosterLive do
       socket =
         socket
         |> assign(:room, room)
+        |> assign(:current_user, socket.assigns.user)
         |> assign(:users, users)
         |> assign(:blocked_users, blocked_users)
 
@@ -43,15 +44,8 @@ defmodule NarwinChatWeb.RosterLive do
   end
 
   @impl true
-  def handle_event("toggle_block_user", %{"index" => index}, socket) do
-    users = socket.assigns.users
-    blocked_user = Enum.at(users, index)
-
-    if blocked_user do
-      handle_event("toggle_block_user", %{"id" => blocked_user.id}, socket)
-    else
-      {:noreply, socket}
-    end
+  def handle_event("toggle_block_user", blockee_id, socket) when is_binary(blockee_id) do
+    handle_event("toggle_block_user", %{"id" => blockee_id}, socket)
   end
 
   @impl true

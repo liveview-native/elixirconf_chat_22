@@ -15,6 +15,7 @@ struct MyRegistry: CustomRegistry {
     }
     enum AttributeName: String, Equatable {
         case rosterLink = "roster-link"
+        case swipeEvent = "swipe-event"
     }
     
     static func lookup(_ name: TagName, element: Element, context: LiveContext<MyRegistry>) -> some View {
@@ -34,6 +35,19 @@ struct MyRegistry: CustomRegistry {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         let rosterURL = URL(string: value, relativeTo: context.url)!
                         RosterLink(url: rosterURL)
+                    }
+                }
+        case .swipeEvent:
+            context.buildElement(element)
+                .swipeActions {
+                    Button(role: .destructive) {
+                        if let s = element.attrIfPresent("swipe-event-param"), let e = element.attrIfPresent("swipe-event") {
+                            Task {
+                                try await context.coordinator.pushEvent(type: "click", event: e, value: s)
+                            }
+                        }
+                    } label: {
+                        Label("Block User", systemImage: "none")
                     }
                 }
         }
