@@ -44,11 +44,6 @@ defmodule NarwinChatWeb.RosterLive do
   end
 
   @impl true
-  def handle_event("toggle_block_user", blockee_id, socket) when is_binary(blockee_id) do
-    handle_event("toggle_block_user", %{"id" => blockee_id}, socket)
-  end
-
-  @impl true
   def handle_event("toggle_block_user", %{"id" => blockee_id}, socket) do
     current_user = socket.assigns.user
     blocked_users = socket.assigns.blocked_users

@@ -43,7 +43,7 @@ struct MyRegistry: CustomRegistry {
                     Button(role: .destructive) {
                         if let s = element.attrIfPresent("swipe-event-param"), let e = element.attrIfPresent("swipe-event") {
                             Task {
-                                try await context.coordinator.pushEvent(type: "click", event: e, value: s)
+                                try await context.coordinator.pushEvent(type: "click", event: e, value: ["id": s])
                             }
                         }
                     } label: {
