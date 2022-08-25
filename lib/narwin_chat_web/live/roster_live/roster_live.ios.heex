@@ -8,7 +8,9 @@
             <text><%= user.first_name %> <%= user.last_name %></text>
 
           <% true -> %>
-            <text swipe-event="toggle_block_user" swipe-event-param={user.id}><%= user.first_name %> <%= user.last_name %></text>
+            <text swipe-event="toggle_block_user" swipe-event-label="Block" swipe-event-param={user.id}>
+              <%= user.first_name %> <%= user.last_name %>
+            </text>
         <% end %>
       </hstack>
     <% end %>

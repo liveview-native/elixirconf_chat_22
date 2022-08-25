@@ -47,7 +47,9 @@ struct MyRegistry: CustomRegistry {
                             }
                         }
                     } label: {
-                        Label("Block User", systemImage: "none")
+                        if let s = element.attrIfPresent("swipe-event-label") {
+                            Text(s)
+                        }
                     }
                 }
         }
