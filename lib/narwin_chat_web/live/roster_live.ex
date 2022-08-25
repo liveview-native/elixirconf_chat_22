@@ -43,27 +43,43 @@ defmodule NarwinChatWeb.RosterLive do
   end
 
   @impl true
-  def handle_event("toggle_block_user", %{"id" => blockee_id}, socket) do
-    blocked_users = socket.assigns.blocked_users
-    blockee_id = String.to_integer(blockee_id)
+  def handle_event("toggle_block_user", %{"index" => index}, socket) do
+    users = socket.assigns.users
+    blocked_user = Enum.at(users, index)
 
-    new_blocked_users =
-      if blockee_id in blocked_users do
+    if blocked_user do
+      handle_event("toggle_block_user", %{"id" => blocked_user.id}, socket)
+    else
+      {:noreply, socket}
+    end
+  end
+
+  @impl true
+  def handle_event("toggle_block_user", %{"id" => blockee_id}, socket) do
+    current_user = socket.assigns.user
+    blocked_users = socket.assigns.blocked_users
+    blockee_id = if is_binary(blockee_id), do: String.to_integer(blockee_id), else: blockee_id
+    attempting_to_block_self? = blockee_id == current_user.id
+
+    case blockee_id in blocked_users do
+      _ when attempting_to_block_self? ->
+        {:noreply, socket}
+
+      true ->
         Repo.delete_all(
           from b in UserBlock,
             where: b.blocker_id == ^socket.assigns.user.id and b.blockee_id == ^blockee_id
         )
 
-        List.delete(blocked_users, blockee_id)
-      else
+        {:noreply, assign(socket, blocked_users: List.delete(blocked_users, blockee_id))}
+
+      false ->
         %UserBlock{}
         |> UserBlock.changeset(%{blocker_id: socket.assigns.user.id, blockee_id: blockee_id})
         |> Repo.insert!()
 
-        [blockee_id | blocked_users]
-      end
-
-    {:noreply, assign(socket, blocked_users: new_blocked_users)}
+        {:noreply, assign(socket, blocked_users: [blockee_id | blocked_users])}
+    end
   end
 
   @impl true

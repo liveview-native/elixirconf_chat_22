@@ -1,1 +1,11 @@
-<text>roster for <%= @room.name %></text>
+<vstack nav-title="Lobby">
+  <list phx-delete="toggle_block_user">
+    <%= for user <- @users do %>
+      <vstack id={"user_#{user.id}"} alignment="leading">
+        <hstack frame-alignment="top" list-row-inset="0">
+          <text><%= user.first_name %> <%= user.last_name %></text>
+        </hstack>
+      </vstack>
+    <% end %>
+  </list>
+</vstack>
