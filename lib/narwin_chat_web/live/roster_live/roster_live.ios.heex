@@ -1,14 +1,14 @@
 <vstack nav-title="Lobby">
   <list>
     <%= for user <- @users do %>
-      <hstack id={"user_#{user.id}"} frame-alignment="top" list-row-inset="0" pad="16">
+      <hstack id={"user_#{user.id}"} frame-alignment="top" list-row-inset="0" pad="16" swipe-event="toggle_block_user" swipe-event-label="Block" swipe-event-param={user.id}>
         <%= cond do %>
           <% @current_user.id == user.id -> %>
             <% # You can block others but you can't block yourself %>
             <text><%= user.first_name %> <%= user.last_name %></text>
 
           <% true -> %>
-            <text swipe-event="toggle_block_user" swipe-event-label="Block" swipe-event-param={user.id}>
+            <text>
               <%= user.first_name %> <%= user.last_name %>
             </text>
         <% end %>
