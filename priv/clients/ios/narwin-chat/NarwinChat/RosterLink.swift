@@ -23,7 +23,7 @@ struct RosterLink: View {
 }
 
 struct RosterView: View {
-    @State var coordinator: LiveViewCoordinator<EmptyRegistry>
+    @State var coordinator: LiveViewCoordinator<MyRegistry>
     
     init(url: URL) {
         var config = LiveViewConfiguration()
