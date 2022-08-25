@@ -34,7 +34,7 @@ struct MyRegistry: CustomRegistry {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         let rosterURL = URL(string: value, relativeTo: context.url)!
-                        RosterLink(url: rosterURL)
+                        RosterLink(url: rosterURL, parentCoordinator: context.coordinator)
                     }
                 }
         case .swipeEvent:

@@ -6,18 +6,28 @@
 //
 
 import SwiftUI
-import PhoenixLiveViewNative
+@_spi(NarwinChat) import PhoenixLiveViewNative
 
 struct RosterLink: View {
     let url: URL
+    let parentCoordinator: LiveViewCoordinator<MyRegistry>
+    @State var isActive = false
     
     var body: some View {
         // TODO: once we're targetting iOS 16, this could just be NavigationLink(value: url) { ... }
         // rather than needing to create a whole new coordinator
-        NavigationLink {
+        NavigationLink(isActive: $isActive) {
             RosterView(url: url)
         } label: {
             Label("Roster", systemImage: "person.3.fill")
+        }
+        .onChange(of: isActive) { newValue in
+            // when un-presenting, reconnect in case blocks changed
+            if newValue == false {
+                Task {
+                    await parentCoordinator.reconnect()
+                }
+            }
         }
     }
 }
