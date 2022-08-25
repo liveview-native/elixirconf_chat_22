@@ -16,7 +16,7 @@ private var baseURL: URL {
         return URL(string: "http://localhost:8080/")!
     }
     #else
-    return URL(string: "https://chatapp.dockyard.com/")
+    return URL(string: "https://chatapp.dockyard.com/")!
     #endif
 }
 
