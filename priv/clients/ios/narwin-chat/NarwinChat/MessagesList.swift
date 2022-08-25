@@ -50,7 +50,10 @@ struct MessagesList: View {
                     }
                     .onChange(of: element) { newValue in
                         if isScrolledToBottom {
-                            scrollView.scrollTo("bottom", anchor: .bottom)
+                            // doesn't work on iOS 15 unless we wait until the next runloop iteration
+                            DispatchQueue.main.async {
+                                scrollView.scrollTo("bottom", anchor: .bottom)
+                            }
                         }
                     }
                     .onAppear {
