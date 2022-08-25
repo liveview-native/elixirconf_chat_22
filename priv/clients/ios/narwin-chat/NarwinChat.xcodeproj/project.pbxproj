@@ -15,6 +15,7 @@
 		2FBF347F288B086300683416 /* NarwinChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF347E288B086300683416 /* NarwinChatTests.swift */; };
 		2FBF3489288B086300683416 /* NarwinChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF3488288B086300683416 /* NarwinChatUITests.swift */; };
 		2FBF348B288B086300683416 /* NarwinChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBF348A288B086300683416 /* NarwinChatUITestsLaunchTests.swift */; };
+		D636194B28B834FC0073CB21 /* ConnectingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D636194A28B834FC0073CB21 /* ConnectingView.swift */; };
 		D69ECC5128B6897C003ACCE8 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5028B6897C003ACCE8 /* LocalData.swift */; };
 		D69ECC5328B6AB6F003ACCE8 /* MyRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5228B6AB6F003ACCE8 /* MyRegistry.swift */; };
 		D69ECC5528B6AB9E003ACCE8 /* LocalTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5428B6AB9E003ACCE8 /* LocalTime.swift */; };
@@ -51,6 +52,7 @@
 		2FBF3484288B086300683416 /* NarwinChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NarwinChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FBF3488288B086300683416 /* NarwinChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarwinChatUITests.swift; sourceTree = "<group>"; };
 		2FBF348A288B086300683416 /* NarwinChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarwinChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D636194A28B834FC0073CB21 /* ConnectingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectingView.swift; sourceTree = "<group>"; };
 		D69ECC5028B6897C003ACCE8 /* LocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
 		D69ECC5228B6AB6F003ACCE8 /* MyRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRegistry.swift; sourceTree = "<group>"; };
 		D69ECC5428B6AB9E003ACCE8 /* LocalTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTime.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				D69ECC5428B6AB9E003ACCE8 /* LocalTime.swift */,
 				D69ECC5628B6ADC8003ACCE8 /* MessagesList.swift */,
 				D69ECC5828B6CF2F003ACCE8 /* RosterLink.swift */,
+				D636194A28B834FC0073CB21 /* ConnectingView.swift */,
 				2FBF3471288B086300683416 /* Assets.xcassets */,
 				2FBF3473288B086300683416 /* Preview Content */,
 			);
@@ -298,6 +301,7 @@
 			files = (
 				D69ECC5128B6897C003ACCE8 /* LocalData.swift in Sources */,
 				D69ECC5528B6AB9E003ACCE8 /* LocalTime.swift in Sources */,
+				D636194B28B834FC0073CB21 /* ConnectingView.swift in Sources */,
 				2FBF3470288B086200683416 /* ContentView.swift in Sources */,
 				D69ECC5328B6AB6F003ACCE8 /* MyRegistry.swift in Sources */,
 				D69ECC5928B6CF2F003ACCE8 /* RosterLink.swift in Sources */,

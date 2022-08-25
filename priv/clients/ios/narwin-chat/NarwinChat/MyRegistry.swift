@@ -54,4 +54,8 @@ struct MyRegistry: CustomRegistry {
                 }
         }
     }
+    
+    static func loadingView(for url: URL, state: LiveViewCoordinator<MyRegistry>.State) -> some View {
+        ConnectingView()
+    }
 }
