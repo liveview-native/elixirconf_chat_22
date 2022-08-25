@@ -1,23 +1,18 @@
 <vstack nav-title="Lobby">
   <list>
     <%= for user <- @users do %>
-      <hstack id={"user_#{user.id}"} frame-alignment="top" list-row-inset="0" pad="16">
-        <%= cond do %>
-          <% @current_user.id == user.id -> %>
-            <% # You can block others but you can't block yourself %>
-            <text>
-              <%= user.first_name %> <%= user.last_name %>
-            </text>
-
-          <% true -> %>
-            <text
-              swipe-event="toggle_block_user"
-              swipe-event-label={if user.id in @blocked_users, do: "Unblock", else: "Block"}
-              swipe-event-param={user.id}>
-              <%= user.first_name %> <%= user.last_name %>
-            </text>
-        <% end %>
-      </hstack>
+      <%= if @current_user.id == user.id do %>
+        <% # You can block others but you can't block yourself %>
+        <hstack id={"user_#{user.id}"} frame-alignment="top" list-row-inset="0" pad="16">
+          <text>
+            <%= user.first_name %> <%= user.last_name %>
+          </text>
+        </hstack>
+      <% else %>
+        <hstack id={"user_#{user.id}"} frame-alignment="top" list-row-inset="0" pad="16" swipe-event="toggle_block_user" swipe-event-label={if user.id in @blocked_users, do: "Unblock", else: "Block"} swipe-event-param={user.id}>
+          <text><%= user.first_name %> <%= user.last_name %></text>
+        </hstack>
+      <% end %>
     <% end %>
   </list>
 </vstack>
