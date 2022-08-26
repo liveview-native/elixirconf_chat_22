@@ -1,4 +1,4 @@
-<vstack nav-title="Lobby">
+<vstack nav-title={@room.name <> " Roster"}>
   <list>
     <%= for user <- @users do %>
       <%= if @current_user.id == user.id do %>
