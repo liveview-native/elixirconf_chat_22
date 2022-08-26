@@ -1,6 +1,10 @@
 defmodule NarwinChatWeb.Router do
   use NarwinChatWeb, :router
 
+  alias NarwinChat.Repo
+  alias NarwinChat.Accounts.User
+  alias NarwinChat.Accounts.UserToken
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -10,8 +14,18 @@ defmodule NarwinChatWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :admin do
+    plug :ensure_admin
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  scope "/admin", NarwinChatWeb do
+    pipe_through [:browser, :admin]
+
+    live "/", AdminLive
   end
 
   scope "/", NarwinChatWeb do
@@ -27,7 +41,6 @@ defmodule NarwinChatWeb.Router do
       live "/lobby", LobbyLive
       live "/room/:room", ChatLive
       live "/room/:room/roster", RosterLive
-      live "/admin", AdminLive
     end
   end
 
@@ -62,6 +75,23 @@ defmodule NarwinChatWeb.Router do
       pipe_through :browser
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
+    end
+  end
+
+  # ---
+
+  defp ensure_admin(conn, _opts) do
+    with token when is_binary(token) <- get_session(conn, "login_token"),
+         %UserToken{} = user_token <- Repo.get_by(UserToken, token: token),
+         %UserToken{expires_at: expiry, user: user} <- Repo.preload(user_token, :user),
+         :gt <- DateTime.compare(expiry, DateTime.utc_now()),
+         true <- user.is_admin do
+      conn
+    else
+      _ ->
+        conn
+        |> halt()
+        |> redirect(to: "/")
     end
   end
 end
