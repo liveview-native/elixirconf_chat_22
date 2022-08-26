@@ -13,12 +13,15 @@
         <text>Please provide the email address associated with your conference ticket:</text>
         <textfield name="email" placeholder="Email" autocorrection="no" autocapitalization="none" keyboard="email"/>
     <% end %>
-    <phx-submit-button>
-    <%= if @submit_event in ["confirm_login", "confirm_password"] do %>
-      <text>Login</text>
-    <% else %>
-      <text>Continue</text>
+    <%= for {field, {message, _}} <- @errors do %>
+      <text color="#EF4444"><%= field %>: <%= message %></text>0
     <% end %>
+    <phx-submit-button>
+      <%= if @submit_event in ["confirm_login", "confirm_password"] do %>
+        <text>Login</text>
+      <% else %>
+        <text>Continue</text>
+      <% end %>
     </phx-submit-button>
   </phx-form>
 </vstack>
