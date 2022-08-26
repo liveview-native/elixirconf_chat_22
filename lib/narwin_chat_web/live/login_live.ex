@@ -125,6 +125,9 @@ defmodule NarwinChatWeb.LoginLive do
 
         {:ok, changeset, "confirm_password"}
 
+      {:user, nil} ->
+        {:error, [user: {"no such user", []}]}
+
       result ->
         result
     end
