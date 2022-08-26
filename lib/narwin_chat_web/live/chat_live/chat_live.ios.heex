@@ -8,11 +8,22 @@
         <% message_id = to_string(message.id) %>
 
         <vstack id={message_id} alignment="leading" pad-leading="8" pad-trailing="8" pad-top="4" pad-bottom="4">
-          <hstack>
-            <text font="body" font-weight="bold"><%= user_name %></text>
-            <spacer />
-            <local-time datetime={NaiveDateTime.to_iso8601(message.inserted_at) <> "Z"} />
-          </hstack>
+        <%# this is a really stupid hack, but something is broken with spacers (they're getting higher priority than the text, so the text gets forced into a narrow width even though there's space) %>
+          <zstack>
+            <hstack>
+              <text font="body" font-weight="bold"><%= user_name %></text>
+              <spacer />
+            </hstack>
+            <hstack>
+              <spacer />
+              <local-time datetime={NaiveDateTime.to_iso8601(message.inserted_at) <> "Z"} />
+            </hstack>
+          </zstack>
+          <%# <hstack> %>
+          <%#   <text font="body" font-weight="bold"><%= user_name %1></text> %>
+          <%#   <spacer /> %>
+          <%#   <local-time datetime={NaiveDateTime.to_iso8601(message.inserted_at) <> "Z"} /> %>
+          <%# </hstack> %>
           <text frame-alignment="leading"><%= message.body %></text>
         </vstack>
       <% end %>
