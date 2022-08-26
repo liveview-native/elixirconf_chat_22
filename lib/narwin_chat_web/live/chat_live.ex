@@ -9,7 +9,7 @@ defmodule NarwinChatWeb.ChatLive do
 
   on_mount {NarwinChat.LiveAuth, {false, {:redirect, NarwinChatWeb.LoginLive}, :cont}}
 
-  @config Expletive.configure(blacklist: Expletive.Blacklist.english)
+  @config Expletive.configure(blacklist: Expletive.Blacklist.english())
 
   @impl true
   def render(assigns) do
@@ -51,6 +51,11 @@ defmodule NarwinChatWeb.ChatLive do
     Dispatcher.post(assigns.user.id, assigns.room.id, sanitized_body)
 
     {:noreply, push_event(socket, :clear_message_field, %{})}
+  end
+
+  @impl true
+  def handle_event("send", %{}, socket) do
+    {:noreply, socket}
   end
 
   @impl true
