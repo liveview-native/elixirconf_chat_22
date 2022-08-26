@@ -35,6 +35,7 @@ defmodule NarwinChat.MixProject do
     [
       {:phoenix, "~> 1.6.10"},
       {:phoenix_ecto, "~> 4.4"},
+      {:expletive, "~> 0.1.5"},
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 3.0"},

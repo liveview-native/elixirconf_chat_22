@@ -9,6 +9,8 @@ defmodule NarwinChatWeb.ChatLive do
 
   on_mount {NarwinChat.LiveAuth, {false, {:redirect, NarwinChatWeb.LoginLive}, :cont}}
 
+  @config Expletive.configure(blacklist: Expletive.Blacklist.english)
+
   @impl true
   def render(assigns) do
     render_native(assigns)
@@ -45,7 +47,8 @@ defmodule NarwinChatWeb.ChatLive do
 
   @impl true
   def handle_event("send", %{"text" => body}, %{assigns: assigns} = socket) do
-    Dispatcher.post(assigns.user.id, assigns.room.id, body)
+    sanitized_body = Expletive.sanitize(body, @config)
+    Dispatcher.post(assigns.user.id, assigns.room.id, sanitized_body)
 
     {:noreply, push_event(socket, :clear_message_field, %{})}
   end
