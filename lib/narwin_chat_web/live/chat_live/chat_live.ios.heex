@@ -24,7 +24,7 @@
           <%#   <spacer /> %>
           <%#   <local-time datetime={NaiveDateTime.to_iso8601(message.inserted_at) <> "Z"} /> %>
           <%# </hstack> %>
-          <text frame-alignment="leading"><%= message.body %></text>
+          <text frame-alignment="leading" fix-multiline-text><%= message.body %></text>
         </vstack>
       <% end %>
     </vstack>

@@ -16,6 +16,7 @@ struct MyRegistry: CustomRegistry {
     enum AttributeName: String, Equatable {
         case rosterLink = "roster-link"
         case swipeEvent = "swipe-event"
+        case fixMultilineText = "fix-multiline-text"
     }
     
     static func lookup(_ name: TagName, element: Element, context: LiveContext<MyRegistry>) -> some View {
@@ -52,6 +53,11 @@ struct MyRegistry: CustomRegistry {
                         }
                     }
                 }
+        case .fixMultilineText:
+            // fix for multiline text being truncated on iOS 15, even though the view is laid out with enough space for it
+            // on iOS 16, this isn't needed
+            context.buildElement(element)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
     
