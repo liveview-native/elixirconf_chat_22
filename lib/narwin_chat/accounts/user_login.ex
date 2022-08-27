@@ -1,6 +1,7 @@
 defmodule NarwinChat.Accounts.UserLogin do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
   alias NarwinChat.Repo
   alias NarwinChat.Words
@@ -50,8 +51,8 @@ defmodule NarwinChat.Accounts.UserLogin do
   defp attach_login_code(changeset), do: changeset
 
   defp attach_user(%Ecto.Changeset{valid?: true} = changeset) do
-    email = get_field(changeset, :email)
-    user = Repo.get_by(User, email: email)
+    email = get_field(changeset, :email) |> String.downcase()
+    user = Repo.one(from u in User, where: fragment("lower(?)", u.email) == ^email)
 
     case user do
       nil ->
