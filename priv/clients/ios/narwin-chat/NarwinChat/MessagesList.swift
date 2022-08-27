@@ -13,6 +13,7 @@ struct MessagesList: View {
     let context: LiveContext<MyRegistry>
     @State private var bottomMaxY: CGFloat = 0
     @State private var isScrolledToBottom = false
+    @State private var keyboardDidChangeFrame = NotificationCenter.default.publisher(for: UIResponder.keyboardDidChangeFrameNotification)
     
     init(element: Element, context: LiveContext<MyRegistry>) {
         self.element = element
@@ -58,6 +59,11 @@ struct MessagesList: View {
                     }
                     .onAppear {
                         scrollView.scrollTo("bottom", anchor: .bottom)
+                    }
+                    .onReceive(keyboardDidChangeFrame) { _ in
+                        withAnimation {
+                            scrollView.scrollTo("bottom", anchor: .bottom)
+                        }
                     }
                 }
             }
