@@ -48,5 +48,11 @@ struct ContentView: View {
 
     var body: some View {
         LiveView(coordinator: coordinator)
+            .onAppear {
+                // don't use transparent nav-bars when scrolled to the edge
+                // this makes large titles look worse, but when scrolling slowly the bar never
+                // becomes fully opaque, and that looks even worse
+                UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBar().standardAppearance
+            }
     }
 }
