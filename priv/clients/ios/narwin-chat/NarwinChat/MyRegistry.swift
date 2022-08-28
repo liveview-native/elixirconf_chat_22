@@ -17,6 +17,7 @@ struct MyRegistry: CustomRegistry {
         case rosterLink = "roster-link"
         case swipeEvent = "swipe-event"
         case fixMultilineText = "fix-multiline-text"
+        case submitOnEnter = "submit-on-enter"
     }
     
     static func lookup(_ name: TagName, element: Element, context: LiveContext<MyRegistry>) -> some View {
@@ -58,6 +59,9 @@ struct MyRegistry: CustomRegistry {
             // on iOS 16, this isn't needed
             context.buildElement(element)
                 .fixedSize(horizontal: false, vertical: true)
+        case .submitOnEnter:
+            context.buildElement(element)
+                .keyboardShortcut(.return, modifiers: .command)
         }
     }
     
