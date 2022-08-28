@@ -21,6 +21,7 @@
 		D69ECC5528B6AB9E003ACCE8 /* LocalTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5428B6AB9E003ACCE8 /* LocalTime.swift */; };
 		D69ECC5728B6ADC8003ACCE8 /* MessagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5628B6ADC8003ACCE8 /* MessagesList.swift */; };
 		D69ECC5928B6CF2F003ACCE8 /* RosterLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69ECC5828B6CF2F003ACCE8 /* RosterLink.swift */; };
+		D6C8494128BBE212002BEBA2 /* SubmitOnEnterModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C8494028BBE212002BEBA2 /* SubmitOnEnterModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		D69ECC5428B6AB9E003ACCE8 /* LocalTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTime.swift; sourceTree = "<group>"; };
 		D69ECC5628B6ADC8003ACCE8 /* MessagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesList.swift; sourceTree = "<group>"; };
 		D69ECC5828B6CF2F003ACCE8 /* RosterLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterLink.swift; sourceTree = "<group>"; };
+		D6C8494028BBE212002BEBA2 /* SubmitOnEnterModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitOnEnterModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				D69ECC5428B6AB9E003ACCE8 /* LocalTime.swift */,
 				D69ECC5628B6ADC8003ACCE8 /* MessagesList.swift */,
 				D69ECC5828B6CF2F003ACCE8 /* RosterLink.swift */,
+				D6C8494028BBE212002BEBA2 /* SubmitOnEnterModifier.swift */,
 				D636194A28B834FC0073CB21 /* ConnectingView.swift */,
 				2FBF3471288B086300683416 /* Assets.xcassets */,
 				2FBF3473288B086300683416 /* Preview Content */,
@@ -306,6 +309,7 @@
 				D69ECC5328B6AB6F003ACCE8 /* MyRegistry.swift in Sources */,
 				D69ECC5928B6CF2F003ACCE8 /* RosterLink.swift in Sources */,
 				2FBF346E288B086200683416 /* NarwinChatApp.swift in Sources */,
+				D6C8494128BBE212002BEBA2 /* SubmitOnEnterModifier.swift in Sources */,
 				D69ECC5728B6ADC8003ACCE8 /* MessagesList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

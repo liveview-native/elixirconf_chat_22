@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import PhoenixLiveViewNative
+@_spi(NarwinChat) import PhoenixLiveViewNative
 
 struct MyRegistry: CustomRegistry {
     enum TagName: String {
@@ -61,7 +61,7 @@ struct MyRegistry: CustomRegistry {
                 .fixedSize(horizontal: false, vertical: true)
         case .submitOnEnter:
             context.buildElement(element)
-                .keyboardShortcut(.return, modifiers: .command)
+                .modifier(SubmitOnEnterModifier(id: try! element.attr("id")))
         }
     }
     

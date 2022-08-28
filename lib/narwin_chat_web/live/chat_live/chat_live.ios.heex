@@ -31,10 +31,10 @@
   </messages-list>
   <rectangle frame-height="1" fill-color="#cccccc" />
   <hstack pad-leading="8" pad-trailing="8">
-    <phx-form id="post" phx-submit="send">
+    <phx-form id="post" phx-submit="send" submit-on-enter>
       <hstack>
-        <textfield name="text" border-style="none" clear-button="while-editing" placeholder="Message" />
-        <phx-submit-button after-submit="clear" submit-on-enter>
+        <textfield name="text" border-style="none" clear-button="while-editing" placeholder="Message" return-key-type="send" />
+        <phx-submit-button after-submit="clear">
           <text>Send</text>
         </phx-submit-button>
       </hstack>
