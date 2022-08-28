@@ -1,0 +1,34 @@
+<.form let={f} for={@changeset} phx-submit={@submit_event}>
+  <%= case @submit_event do %>
+    <% "confirm_login" -> %>
+      <div class="block my-3">
+        <p class="mb-3">Check your email for a login code and enter / paste it below.</p>
+        <%= text_input f, :login_code_confirmation,
+          required: true,
+          placeholder: "login code",
+          class: "items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg placeholder:text-stone-400"
+        %>
+      </div>
+
+    <% "confirm_password" -> %>
+      <div class="block my-3">
+        <p class="mb-3">Enter your password.</p>
+        <%= password_input f, :password,
+          required: true,
+          placeholder: "password",
+          class: "items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg placeholder:text-stone-400"
+        %>
+      </div>
+  <% end %>
+
+  <%= if @errors do %>
+    <div class="block my-3 text-red-500">
+      <%= for {field, {message, _}} <- @errors do %>
+        <p><%= field %>: <%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="block my-3">
+    <%= submit "login", [class: "inline-block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto"] %>
+  </div>
+</.form>

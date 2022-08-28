@@ -7,13 +7,18 @@ defmodule NarwinChat.Accounts.UserLogin do
   alias NarwinChat.Words
   alias NarwinChat.Accounts.User
 
-  embedded_schema do
-    field :email, :string
-    field :login_code, :string, virtual: true
-    field :login_code_confirmation, :string
-    field :password, :string
+  @primary_key false
 
-    embeds_one :user, User
+  schema "user_logins" do
+    field :email, :string
+    field :login_code, :string
+    field :login_code_confirmation, :string, virtual: true
+    field :password, :string, virtual: true
+    field :expires_at, :utc_datetime
+
+    belongs_to :user, User, primary_key: true
+
+    timestamps()
   end
 
   @optional_params ~w(login_code_confirmation password)a
@@ -27,6 +32,7 @@ defmodule NarwinChat.Accounts.UserLogin do
     |> validate_required(@required_params)
     |> validate_format(:email, ~r/@/)
     |> attach_login_code()
+    |> attach_expires_at()
     |> attach_user()
   end
 
@@ -44,26 +50,44 @@ defmodule NarwinChat.Accounts.UserLogin do
 
   ###
 
-  defp attach_login_code(%Ecto.Changeset{valid?: true} = changeset) do
-    put_change(changeset, :login_code, generate_login_code())
-  end
-
-  defp attach_login_code(changeset), do: changeset
-
-  defp attach_user(%Ecto.Changeset{valid?: true} = changeset) do
-    email = get_field(changeset, :email) |> String.downcase()
-    user = Repo.one(from u in User, where: fragment("lower(?)", u.email) == ^email)
-
-    case user do
-      nil ->
-        add_error(changeset, :user, "no such user")
-
-      user ->
-        put_change(changeset, :user, user)
+  defp attach_login_code(changeset) do
+    with true <- changeset.valid?,
+         nil <- get_field(changeset, :login_code) do
+      put_change(changeset, :login_code, generate_login_code())
+    else
+      _ ->
+        changeset
     end
   end
 
-  defp attach_user(changeset), do: changeset
+  defp attach_expires_at(changeset) do
+    put_change(
+      changeset,
+      :expires_at,
+      DateTime.utc_now()
+      |> DateTime.add(60 * 60, :second)
+      |> DateTime.truncate(:second)
+    )
+  end
+
+  defp attach_user(changeset) do
+    with true <- changeset.valid?,
+         nil <- get_field(changeset, :user) do
+      email = get_field(changeset, :email) |> String.downcase()
+      user = Repo.one(from u in User, where: fragment("lower(?)", u.email) == ^email)
+
+      case user do
+        nil ->
+          add_error(changeset, :user, "no such user")
+
+        user ->
+          put_change(changeset, :user, user)
+      end
+    else
+      _ ->
+        changeset
+    end
+  end
 
   defp generate_login_code do
     Enum.join([Words.random_big(), Words.random_big(), Words.random_big()], "-")

@@ -1,0 +1,20 @@
+<vstack nav-title="ElixirConf 2022" pad-leading="16" pad-trailing="16">
+  <phx-form id="login" phx-submit={@submit_event}>
+    <%= case @submit_event do %>
+      <% "confirm_login" -> %>
+        <text>If your email address is found, you will receive a login code. Submit it below to login</text>
+        <textfield name="login_code_confirmation" placeholder="Login Code" autocorrection="no" autocapitalization="none" />
+
+      <% "confirm_password" -> %>
+        <text>Enter your password below to login</text>
+        <textfield name="password" placeholder="Password" autocorrection="no" autocapitalization="none" is-secure-text-entry="yes" />
+    <% end %>
+    <%= for {field, {message, _}} <- @errors do %>
+      <text color="#EF4444"><%= field %>: <%= message %></text>0
+    <% end %>
+    <phx-submit-button>
+      <text>Login</text>
+    </phx-submit-button>
+  </phx-form>
+</vstack>
+
