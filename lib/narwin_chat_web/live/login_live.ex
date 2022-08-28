@@ -51,6 +51,11 @@ defmodule NarwinChatWeb.LoginLive do
     end
   end
 
+  @impl true
+  def handle_event("login", %{}, socket) do
+    {:noreply, socket}
+  end
+
   # ---
 
   defp handle_new_login(%Changeset{} = changeset) do

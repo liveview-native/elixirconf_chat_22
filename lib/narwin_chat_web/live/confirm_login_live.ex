@@ -63,6 +63,11 @@ defmodule NarwinChatWeb.ConfirmLoginLive do
   end
 
   @impl true
+  def handle_event("confirm_login", %{}, socket) do
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_event("confirm_password", %{"password" => _} = login_params, socket) do
     handle_event("confirm_password", %{"user_login" => login_params}, socket)
   end
@@ -87,6 +92,11 @@ defmodule NarwinChatWeb.ConfirmLoginLive do
              )}
         end
     end
+  end
+
+  @impl true
+  def handle_event("confirm_password", %{}, socket) do
+    {:noreply, socket}
   end
 
   # ---
