@@ -5,15 +5,6 @@ To start your Phoenix server:
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-
-Now you can visit [`localhost:8080`](http://localhost:8080) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+  * Navigate your browser to `localhost:8080` and request a login code with `admin@example.com` and press `continue`
+  * Look at the server log for the line `[info] [NarwinChatWeb.LoginLive] - Login Link Requested` and copy the `login_code` value and paste into form
+  * After you are authenticated point the browser to `localhost:8080/admin` and create a new room

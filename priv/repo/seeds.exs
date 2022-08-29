@@ -9,3 +9,7 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+%NarwinChat.Accounts.User{}
+|> NarwinChat.Accounts.User.changeset(%{first_name: "Default", last_name: "Admin", email: "admin@example.com", is_admin: true})
+|> NarwinChat.Repo.insert()
