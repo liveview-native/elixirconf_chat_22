@@ -12,6 +12,7 @@ struct MyRegistry: CustomRegistry {
     enum TagName: String {
         case messagesList = "messages-list"
         case localTime = "local-time"
+        case linkText = "link-text"
     }
     enum AttributeName: String, Equatable {
         case rosterLink = "roster-link"
@@ -26,6 +27,8 @@ struct MyRegistry: CustomRegistry {
             MessagesList(element: element, context: context)
         case .localTime:
             LocalTime(element: element)
+        case .linkText:
+            LinkText(element: element)
         }
     }
     
