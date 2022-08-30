@@ -13,7 +13,7 @@ config :narwin_chat, NarwinChat.Repo, database: "/data/database.db"
 # before starting your production server.
 config :narwin_chat, NarwinChatWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
-  check_origin: ["//elixirconf22chat.fly.dev", "//chatapp.dockyard.com"]
+  check_origin: ["//elixirconf22chat.fly.dev", "//chatapp.dockyard.com", "//chatapp.elixirconf.com"]
 
 # Do not print debug messages in production
 config :logger, level: :info
