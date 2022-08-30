@@ -15,6 +15,7 @@ defmodule NarwinChatWeb.LobbyLive do
   @impl true
   def mount(_params, _session, socket) do
     if connected?(socket) do
+      Phoenix.PubSub.subscribe(NarwinChat.PubSub, "lobby")
       {:ok, assign(socket, rooms: Dispatcher.join_lobby(socket.assigns.user.id))}
     else
       {:ok, assign(socket, rooms: [])}
@@ -28,6 +29,15 @@ defmodule NarwinChatWeb.LobbyLive do
 
     new_rooms =
       List.update_at(socket.assigns.rooms, index, fn {room, count} -> {room, count + delta} end)
+
+    {:noreply, assign(socket, rooms: new_rooms)}
+  end
+
+  def handle_info({:room_updated, new_room}, socket) do
+    index = Enum.find_index(socket.assigns.rooms, fn {%Room{id: id}, _} -> id == new_room.id end)
+
+    new_rooms =
+      List.update_at(socket.assigns.rooms, index, fn {_room, count} -> {new_room, count} end)
 
     {:noreply, assign(socket, rooms: new_rooms)}
   end
