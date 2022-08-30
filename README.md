@@ -1,4 +1,4 @@
-# NarwinChat
+# ElixirConf 2022 Chat
 
 To start your Phoenix server:
 
