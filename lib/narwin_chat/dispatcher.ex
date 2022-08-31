@@ -148,7 +148,7 @@ defmodule NarwinChat.Dispatcher do
   end
 
   defp get_room_populations(listeners) do
-    Repo.all(from r in Room, order_by: [asc: r.name])
+    Repo.all(from r in Room, order_by: [asc: r.updated_at])
     |> Enum.map(fn room -> {room, length(Map.get(listeners, room.id, []))} end)
   end
 
