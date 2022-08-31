@@ -1,29 +1,30 @@
-<div>
-  <% messages = assigns[:messages] || [] %>
+<div class="flex w-full flex-grow flex-col">
+    <div class="flex flex-grow flex-col justify-between">
+    <% messages = assigns[:messages] || [] %>
+    <ul id="message-list" class="h-[600px] w-full flex-grow overflow-y-scroll rounded-lg bg-white px-3 text-left">
+      <%= for {message, idx} <- messages |> Enum.with_index() do %>
+        <li class="py-1.5" id={"message-#{idx}"}>
+          <% user_name = "#{message.user.first_name} #{message.user.last_name}" %>
 
-  <ul id="message-list" class="rounded-lg bg-orange-200/25 h-96 w-full max-w-96 overflow-y-scroll text-left pl-3">
-    <%= for {message, idx} <- messages |> Enum.with_index() do %>
-      <li class="py-1.5" id={"message-#{idx}"}>
-        <% user_name = "#{message.user.first_name} #{message.user.last_name}" %>
-
-        <div>
-          <div class="flex">
-            <h1 class="font-bold grow">
-              <%= user_name %>
-            </h1>
-            <time><%= Calendar.strftime(message.inserted_at, "%I:%M %P") %></time>
+          <div>
+            <div class="flex items-baseline gap-x-3">
+              <h1 class="font-bold">
+                <%= user_name %>
+              </h1>
+              <time class="font-sans text-sm text-blue-900"><%= Calendar.strftime(message.inserted_at, "%I:%M %P") %></time>
+            </div>
+            <span class="font-sans"><%= message.body %></span>
           </div>
-          <span><%= message.body %></span>
-        </div>
-      </li>
-    <% end %>
-  </ul>
-  <div class="mt-1">
-    <form id="post" phx-submit="send">
-      <input class="items-center w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-stone-900/10 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm rounded-lg placeholder:text-stone-400" name="text" placeholder="Message" />
-      <button class="inline-block bg-stone-900 hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 text-white font-semibold h-12 px-6 rounded-lg w-full sm:w-auto" type="submit">
-        <text>Send</text>
-      </button>
-    </form>
+        </li>
+      <% end %>
+    </ul>
+    <div class="mt-4">
+      <form id="post" phx-submit="send" class="flex flex-wrap gap-2 sm:flex-nowrap">
+        <input class="h-12 w-72 flex-grow items-center space-x-3 rounded-lg bg-white px-4 text-left font-sans shadow-sm ring-1 ring-stone-900/10 placeholder:text-stone-400 hover:ring-stone-300 focus:outline-none focus:ring-2 focus:ring-sky-500" name="text" placeholder="Message" />
+        <button class="inline-block h-12 w-full rounded-lg bg-blue-900 px-6 font-semibold text-white hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 focus:ring-offset-stone-50 sm:w-auto" type="submit">
+          <text>Send</text>
+        </button>
+      </form>
+    </div>
   </div>
 </div>
