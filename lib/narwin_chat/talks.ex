@@ -12,8 +12,9 @@ defmodule NarwinChat.Talks do
 
     Talk
     |> where([t], t.starts_at <= ^now and t.ends_at > ^now)
+    |> join(:inner, [t], r in Room, on: t.room_id == r.id)
+    |> preload([t, r], room: r)
     |> Repo.all()
-    |> Repo.preload([:room])
   end
 
   def update_talk_rooms(talks) do
