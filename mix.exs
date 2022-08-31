@@ -56,7 +56,8 @@ defmodule NarwinChat.MixProject do
       {:joken, "~> 2.5"},
       {:csv, "~> 2.4"},
       {:hackney, "~> 1.18"},
-      {:argon2_elixir, "~> 3.0"}
+      {:argon2_elixir, "~> 3.0"},
+      {:timex, "~> 3.7.9"}
     ]
   end
 

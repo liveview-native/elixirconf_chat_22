@@ -1,0 +1,55 @@
+start_time,end_time,room,description
+Aug 31 9:10 AM,Aug 31 9:55 AM,Virtual Keynote,Keynote: José Valim
+Aug 31 10:05 AM,Aug 31 10:30 AM,Virtual Track 1,"Robust, Distributed, and Parallel Processing for Enormous Images Using SuperVisor, Node, Flow, Nx, and evision"
+Aug 31 10:05 AM,Aug 31 10:30 AM,Virtual Track 2,"Porting Legacy Backend Services into Elixir, Seamlessly"
+Aug 31 10:05 AM,Aug 31 10:30 AM,Virtual Track 3,Building a HEEX component library
+Aug 31 10:35 AM,Aug 31 11:00 AM,Virtual Track 1,Livebook smart cells are amazing
+Aug 31 10:35 AM,Aug 31 11:00 AM,Virtual Track 2,Classifying Bot IP Addresses in Phoenix
+Aug 31 10:35 AM,Aug 31 11:00 AM,Virtual Track 3,The Elixir Of Web Scraping
+Aug 31 11:05 AM,Aug 31 11:30 AM,Virtual Track 1,Make a Soundcloud like app in a week and make it fit in a seven dollar box
+Aug 31 11:05 AM,Aug 31 11:30 AM,Virtual Track 2,Dx - a pragmatic inference system based on your Ecto schema
+Aug 31 11:05 AM,Aug 31 11:30 AM,Virtual Track 3,Cryptography and Elixir
+Aug 31 1:10 PM,Aug 31 1:45 PM,Cottonwood 2-3,Ecto in Production - Migration Edition
+Aug 31 1:10 PM,Aug 31 1:45 PM,Cottonwood 4-5,Let's talk to Industrial devices with Elixir & Nerves
+Aug 31 1:50 PM,Aug 31 2:25 PM,Cottonwood 2-3,Delightful Multiplayer Editing with Phoenix
+Aug 31 1:50 PM,Aug 31 2:25 PM,Cottonwood 4-5,Workflows and use cases for Elixir Nerves
+Aug 31 2:30 PM,Aug 31 3:05 PM,Cottonwood 2-3,Going Global with a Normal Phoenix App
+Aug 31 2:30 PM,Aug 31 3:05 PM,Cottonwood 4-5,Keeping your IoT fleet afloat with Sink
+Aug 31 3:45 PM,Aug 31 4:20 PM,Cottonwood 2-3,Match Specs: Fast Functional Filtering with Matcha
+Aug 31 3:45 PM,Aug 31 4:20 PM,Cottonwood 4-5,Introducing Juvet: Building Bots in Elixir
+Aug 31 4:25 PM,Aug 31 5:00 PM,Cottonwood 2-3,Time algebra - a new way to think about and work with time
+Aug 31 4:25 PM,Aug 31 5:00 PM,Cottonwood 4-5,Making Elixir Honk: Implementing An Elixir Audio Library In Zig
+Sep 1 9:25 AM,Sep 1 10:25 AM,Adams A,Keynote: Brian Cardarella
+Sep 1 10:40 AM,Sep 1 11:20 AM,Adams A,Onboarding New Elixir Members
+Sep 1 10:40 AM,Sep 1 11:20 AM,Cottonwood 2-3,"In Production with Elixir, Rust, and WebAssembly"
+Sep 1 10:40 AM,Sep 1 11:20 AM,Cottonwood 4-5,Caching with the Postgres WAL
+Sep 1 11:25 AM,Sep 1 12:00 PM,Adams A,“How to Grow your own Juniors”: A guide to mentoring in an Elixir Environment
+Sep 1 11:25 AM,Sep 1 12:00 PM,Cottonwood 2-3,Quick Iteration in Elixir - Tips from 6 Years of Professional & Hobby Elixir Development
+Sep 1 11:25 AM,Sep 1 12:00 PM,Cottonwood 4-5,WebAuthn + LiveView
+Sep 1 1:15 PM,Sep 1 1:50 PM,Adams A,Selling Elixir
+Sep 1 1:15 PM,Sep 1 1:50 PM,Cottonwood 2-3,Seems Good Enough to Me: Working with Testers to Derisk Elixir Upgrades
+Sep 1 1:15 PM,Sep 1 1:50 PM,Cottonwood 4-5,Wordle: Elixir Flavour
+Sep 1 1:55 PM,Sep 1 2:30 PM,Adams A,"Roll Cages, Pit Stops, and Victory Laps: The Launch of Elixir and LiveView at Scale on the New Cars.com"
+Sep 1 1:55 PM,Sep 1 2:30 PM,Cottonwood 2-3,Self Taught to First Job!
+Sep 1 1:55 PM,Sep 1 2:30 PM,Cottonwood 4-5,E2E Reactivity - using Svelte with Phoenix LiveView
+Sep 1 2:35 PM,Sep 1 3:10 PM,Adams A,Axon: Functional Programming for Deep Learning
+Sep 1 2:35 PM,Sep 1 3:10 PM,Cottonwood 2-3,Serverless to Serving Elixir: Migrating Serverless app to run on Phoenix
+Sep 1 2:35 PM,Sep 1 3:10 PM,Cottonwood 4-5,Have you got the ExFactor? Writing a refactor helper
+Sep 1 3:45 PM,Sep 1 4:20 PM,Adams A,SOLID code isn't flexible
+Sep 1 3:45 PM,Sep 1 4:20 PM,Cottonwood 2-3,Using Livebook to Teach Elixir
+Sep 1 3:45 PM,Sep 1 4:20 PM,Cottonwood 4-5,Review of using Elixir for 4 years in production
+Sep 1 4:25 PM,Sep 1 5:00 PM,Adams A,Learn you some pattern matching for great good!
+Sep 1 4:25 PM,Sep 1 5:00 PM,Cottonwood 2-3,Connect the Docs
+Sep 1 4:25 PM,Sep 1 5:00 PM,Cottonwood 4-5,Shifting Left: Secure Coding in Elixir Livebooks
+Sep 2 9:05 AM,Sep 2 9:40 AM,Adams A,"To MVP and beyond, a year in LiveView"
+Sep 2 9:05 AM,Sep 2 9:40 AM,Cottonwood 2-3,A Javascripter's trip to Phoenix and LiveView
+Sep 2 9:05 AM,Sep 2 9:40 AM,Cottonwood 4-5,Exploring Elixir Codebases with Archeometer
+Sep 2 9:45 AM,Sep 2 10:20 AM,Adams A,Flame On: Profiling Elixir and Phoenix apps with Flame Graphs in Live Dashboard
+Sep 2 9:45 AM,Sep 2 10:20 AM,Cottonwood 2-3,Designing Data Intensive Applications in Elixir with Flow
+Sep 2 9:45 AM,Sep 2 10:20 AM,Cottonwood 4-5,Understanding common network protocols with Elixir
+Sep 2 10:25 AM,Sep 2 11:00 AM,Adams A,I was wrong about LiveView
+Sep 2 10:25 AM,Sep 2 11:00 AM,Cottonwood 2-3,Searching Your Elixir Code
+Sep 2 10:25 AM,Sep 2 11:00 AM,Cottonwood 4-5,Embedded Web Apps in Elixir with LiveState
+Sep 2 11:25 AM,Sep 2 12:25 PM,Adams A,Lightning Talks
+Sep 2 1:50 PM,Sep 2 2:50 PM,Adams A,Keynote: Chris Grainger
+Sep 2 3:45 PM,Sep 2 4:45 PM,Adams A,Keynote: Chris McCord
