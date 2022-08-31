@@ -3,6 +3,7 @@ defmodule NarwinChat.Talks do
 
   import Ecto.Query
 
+  alias NarwinChat.Dispatcher
   alias NarwinChat.Repo
   alias NarwinChat.Chat.Room
   alias NarwinChat.Chat.Talk
@@ -18,20 +19,21 @@ defmodule NarwinChat.Talks do
   end
 
   def update_talk_rooms(talks) do
-    for talk <- talks,
-        # Only update the room if the title is changing
-        false <- talk.title == talk.room.description do
+    talks
+    # Only update the room if the title is changing
+    |> Enum.reject(fn talk -> talk.title == talk.room.description end)
+    |> Enum.each(fn talk ->
       talk.room
       |> Room.changeset(%{description: talk.title})
       |> Repo.update()
       |> case do
         {:ok, room} ->
-          Phoenix.PubSub.broadcast(NarwinChat.PubSub, "lobby", {:room_updated, room})
+          Dispatcher.room_updated(room)
 
         {:error, _changeset} ->
           Logger.error("Could not update room #{talk.room.id} from talk #{talk.id}")
       end
-    end
+    end)
   end
 
   def import_csv(path, opts \\ []) do

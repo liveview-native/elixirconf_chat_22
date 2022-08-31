@@ -48,6 +48,11 @@ defmodule NarwinChat.Dispatcher do
     )
   end
 
+  @spec room_updated(Room.t()) :: :ok
+  def room_updated(room) do
+    GenServer.cast(__MODULE__, {:room_updated, room})
+  end
+
   @impl true
   def init(_) do
     {
@@ -136,6 +141,15 @@ defmodule NarwinChat.Dispatcher do
         unless message.user.is_shadow_banned do
           broadcast_message(listeners, message)
         end
+    end
+
+    {:noreply, listeners}
+  end
+
+  @impl true
+  def handle_cast({:room_updated, room}, listeners) do
+    for {pid, _} <- Map.get(listeners, :lobby, []) do
+      send(pid, {:room_updated, room})
     end
 
     {:noreply, listeners}
