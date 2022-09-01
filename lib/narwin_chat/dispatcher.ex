@@ -71,6 +71,8 @@ defmodule NarwinChat.Dispatcher do
         [{from, user_id} | existing]
       end)
 
+    Process.monitor(from)
+
     {:reply, rooms, new_listeners}
   end
 
@@ -93,6 +95,8 @@ defmodule NarwinChat.Dispatcher do
         [{from, user_id} | existing]
       end)
 
+    Process.monitor(from)
+
     {:reply, recent, new_listeners}
   end
 
@@ -108,22 +112,13 @@ defmodule NarwinChat.Dispatcher do
 
   @impl true
   def handle_cast({:leave_lobby, pid}, listeners) do
-    {:noreply,
-     Map.update(listeners, :lobby, [], fn existing ->
-       Enum.reject(existing, fn {p, _} -> p == pid end)
-     end)}
+    {:noreply, remove_listener(listeners, :lobby, pid)}
   end
 
   @impl true
   def handle_cast({:leave, room_id, pid}, listeners) do
     broadcast_room_event(listeners, :room_leave, room_id)
-
-    new_listeners =
-      Map.update(listeners, room_id, [], fn existing ->
-        Enum.reject(existing, fn {p, _} -> p == pid end)
-      end)
-
-    {:noreply, new_listeners}
+    {:noreply, remove_listener(listeners, room_id, pid)}
   end
 
   @impl true
@@ -155,6 +150,28 @@ defmodule NarwinChat.Dispatcher do
     {:noreply, listeners}
   end
 
+  @impl true
+  def handle_info({:DOWN, _ref, :process, pid, _reason}, listeners) do
+    # Find which rooms the pid belonged to (should be zero or one)
+    room_ids_left =
+      listeners
+      |> Map.keys()
+      |> Enum.filter(fn room_id ->
+        Enum.find(listeners[room_id], fn {p, _} -> p == pid end)
+      end)
+
+    # Update the room listeners by removing the pid
+    new_listeners =
+      Enum.reduce(room_ids_left, listeners, fn room_id, listeners_acc ->
+        # Side-effect: broadcast head-count updates to the lobby
+        broadcast_room_event(listeners, :room_leave, room_id)
+
+        remove_listener(listeners_acc, room_id, pid)
+      end)
+
+    {:noreply, new_listeners}
+  end
+
   defp broadcast_message(listeners, message) do
     for {pid, _} <- Map.get(listeners, message.room_id, []) do
       send(pid, {:message, message})
@@ -170,5 +187,11 @@ defmodule NarwinChat.Dispatcher do
     for {pid, _} <- Map.get(listeners, :lobby, []) do
       send(pid, {event, room_id})
     end
+  end
+
+  defp remove_listener(listeners, room_id, pid) do
+    Map.update(listeners, room_id, [], fn existing ->
+      Enum.reject(existing, fn {p, _} -> p == pid end)
+    end)
   end
 end
