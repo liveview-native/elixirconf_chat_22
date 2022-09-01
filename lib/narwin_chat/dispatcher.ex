@@ -118,10 +118,7 @@ defmodule NarwinChat.Dispatcher do
   @impl true
   def handle_cast({:leave, room_id, pid}, listeners) do
     broadcast_room_event(listeners, :room_leave, room_id)
-
-    new_listeners = remove_listener(listeners, room_id, pid)
-
-    {:noreply, new_listeners}
+    {:noreply, remove_listener(listeners, room_id, pid)}
   end
 
   @impl true
@@ -192,8 +189,8 @@ defmodule NarwinChat.Dispatcher do
     end
   end
 
-  defp remove_listener(listeners, room, pid) do
-    Map.update(listeners, room, [], fn existing ->
+  defp remove_listener(listeners, room_id, pid) do
+    Map.update(listeners, room_id, [], fn existing ->
       Enum.reject(existing, fn {p, _} -> p == pid end)
     end)
   end
